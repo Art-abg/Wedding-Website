@@ -1,26 +1,147 @@
 @import "tailwindcss";
 
+/* Wedding Theme Color Variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fff8f5;
+  --foreground: #364e3b;
+  --gold-100: #fdf8e9;
+  --gold-200: #f7eccc;
+  --gold-300: #e5d4a8;
+  --gold-400: #d4bc84;
+  --gold-500: #c6a96c;
+  --gold-600: #b09155;
+  --gold-700: #9c8050;
+  --cream-100: #fff8f5;
+  --cream-200: #fff1e6;
+  --blush-100: #ffeee9;
+  --blush-200: #feddcf;
+  --blush-300: #fccbba;
+  --green-700: #364e3b;
+  --green-800: #2a3e2e;
+  --green-900: #1e2e21;
+  --berry-600: #a85c79;
+  --berry-700: #96526d;
+  --berry-800: #844760;
 }
 
-@theme inline {
+/* Theme defaults */
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Reset scroll behavior for smooth animations */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Font Family Utilities */
+.font-parisienne {
+  font-family: var(--font-parisienne), cursive;
+}
+
+/* Animation Classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Custom Backgrounds */
+.bg-texture-light {
+  background-image: url('/assets/texture-light.png');
+  background-size: 200px;
+  background-repeat: repeat;
+  background-blend-mode: overlay;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--cream-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--gold-400);
+  border-radius: 20px;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--gold-500);
+}
+
+/* Elegant form inputs */
+input, select, textarea {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  box-shadow: 0 0 0 2px var(--gold-300);
+  outline: none;
+}
+
+/* Tailwind Gold and other custom class utilities */
+@layer utilities {
+  .text-gold-400 {
+    color: var(--gold-400);
+  }
+  .text-gold-500 {
+    color: var(--gold-500);
+  }
+  .text-gold-600 {
+    color: var(--gold-600);
+  }
+  .bg-gold-400 {
+    background-color: var(--gold-400);
+  }
+  .bg-gold-500 {
+    background-color: var(--gold-500);
+  }
+  .bg-gold-600 {
+    background-color: var(--gold-600);
+  }
+  .border-gold-300 {
+    border-color: var(--gold-300);
+  }
+  .border-gold-400 {
+    border-color: var(--gold-400);
+  }
+  .border-gold-500 {
+    border-color: var(--gold-500);
+  }
+}
+
+/* Custom animation for fade-in effect */
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Custom backgrounds */
+.bg-rsvp-floral {
+  background-image: linear-gradient(to bottom right, rgba(255, 247, 237, 0.97), rgba(253, 224, 215, 0.93)), url('/images/floral-bg-light.jpg');
+  background-size: cover;
+  background-attachment: fixed;
 }
