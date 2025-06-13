@@ -1,0 +1,80 @@
+.decorativeElement {
+  position: absolute;
+}
+
+.patternContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.positionTopRight {
+  top: 0;
+  right: 0;
+}
+
+.positionBottomLeft {
+  bottom: 0;
+  left: 0;
+}
+
+.positionCenterLeft {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.positionCenterRight {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.positionCenter {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.positionTopLeft {
+  top: 0;
+  left: 0;
+}
+
+.positionBottomRight {
+  bottom: 0;
+  right: 0;
+}
+
+.sizeSm {
+  width: 4rem;
+  height: 4rem;
+}
+
+.sizeMd {
+  width: 6rem;
+  height: 6rem;
+}
+
+.sizeLg {
+  width: 8rem;
+  height: 8rem;
+}
+
+.sizeXl {
+  width: 12rem;
+  height: 12rem;
+}
+
+/* Opacity classes */
+.opacity-0 { opacity: 0; }
+.opacity-01 { opacity: 0.1; }
+.opacity-02 { opacity: 0.2; }
+.opacity-03 { opacity: 0.3; }
+.opacity-04 { opacity: 0.4; }
+.opacity-05 { opacity: 0.5; }
+.opacity-06 { opacity: 0.6; }
+.opacity-07 { opacity: 0.7; }
+.opacity-08 { opacity: 0.8; }
+.opacity-09 { opacity: 0.9; }
+.opacity-1 { opacity: 1; }

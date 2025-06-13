@@ -57,6 +57,10 @@ const config: Config = {
         mono: ['var(--font-geist-mono)', 'monospace'],
         parisienne: ['var(--font-parisienne)', 'cursive'],
         cormorant: ['var(--font-cormorant)', 'serif'], // Assuming you have this font variable
+        'dancing-script': ['var(--font-dancing-script)', 'cursive'],
+      },
+      animation: {
+        'spin-slow': 'spin 20s linear infinite',
       },
     },
   },

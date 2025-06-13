@@ -1,4 +1,11 @@
 export default {
+  nav: {
+    home: "Home",
+    attend: "Attend",
+    details: "Details",
+    gallery: "Gallery",
+    language: "Language"
+  },
   home: {
     title: "{brideName} & {groomName}'s Wedding",
     tagline: "Join us for a celebration of love!",
@@ -8,15 +15,27 @@ export default {
     venueLabel: "Where",
     venueName: "Villa Hills, Yerevan",
     venueMapLink: "View on Google Maps",
+    venueAddress: "Villa Hills, Yerevan",
     rsvpTitle: "Kindly Respond",
     rsvpDeadline: "Please RSVP by {date}",
-    rsvpButton: "RSVP Now",
+    rsvpButton: "Confirm Attendance",
     celebrate: "Celebrate With Us", // New key
     addToCalendar: "Add to Calendar", // New key
     footer: "Made with love for Anna & Artur",
     backToHome: "Back to Home Page", // New key
     dressCodeTitle: "Attire Inspiration",
-    dressCodeText: "To enhance our Enchanted Garden Soirée, we invite you to embrace a palette of jewel tones, soft pastels, or earthy neutrals. Think emerald green, sapphire blue, amethyst purple, dusty rose, lavender, sage, or warm beige. Floral patterns are also warmly welcomed!"
+    dressCodeText: "To enhance our Enchanted Garden Soirée, we invite you to embrace a palette of jewel tones, soft pastels, or earthy neutrals. Think emerald green, sapphire blue, amethyst purple, dusty rose, lavender, sage, or warm beige. Floral patterns are also warmly welcomed!",
+    heroTitleL1: "Anna & Artur's",
+    heroTitleL2: "Wedding",
+    weddingDateValue: "September 12, 2025",
+    weddingTimeValue: "5:00 PM",
+    churchTimeValue: "2:00 PM",
+    rsvpDeadlineValue: "August 20, 2025",
+    church: {
+      title: "Church Ceremony",
+      name: "Surb Anna Church",
+      mapLink: "View on Map"
+    }
   },
   rsvpPage: { // Renamed from rsvp_form and new keys added
     title: 'Will You Be Joining Us?',
@@ -42,7 +61,8 @@ export default {
       submissionSuccessTitle: 'Thank You!',
       submissionSuccessMessage: "Your RSVP has been successfully submitted. We can't wait to celebrate with you!",
       submissionErrorTitle: 'Oops!',
-      submissionErrorMessage: 'Something went wrong. Please try submitting your RSVP again.'
+      submissionErrorMessage: 'Something went wrong. Please try submitting your RSVP again.',
+      tryAgainButton: 'Try Again'
     }
   }
 } as const;
