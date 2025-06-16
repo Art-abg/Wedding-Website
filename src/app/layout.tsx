@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Parisienne, Cormorant_Garamond, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import I18nProvider from "@/components/providers/I18nProvider";
+import GlobalAudioPlayer from '@/components/ui/GlobalAudioPlayer';
 import { getCurrentLocale } from "@/locales/server";
 
 const geist = Geist({
@@ -54,6 +55,7 @@ export default async function RootLayout({
       <body className={`${geist.variable} ${geistMono.variable} ${parisienne.variable} ${cormorant.variable} ${dancingScript.variable} font-sans antialiased bg-cream-100`}>
         <I18nProvider locale={locale}>
           {children}
+          <GlobalAudioPlayer />
         </I18nProvider>
       </body>
     </html>

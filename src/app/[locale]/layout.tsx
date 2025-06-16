@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { locales } from '@/locales/config';
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import AudioPlayer from '@/components/ui/AudioPlayer';
+
 import MainLayout from '@/components/layout/MainLayout';
 
 export async function generateStaticParams() {
@@ -18,7 +18,6 @@ export default function LocaleLayout({
   return (
     <MainLayout>
       <SpeedInsights />
-      <AudioPlayer />
       {children}
     </MainLayout>
   );

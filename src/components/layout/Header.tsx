@@ -2,14 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import LanguageSelector from '../ui/LanguageSelector';
-import TranslatedNav from './TranslatedNav';
+import useTranslatedNav from './TranslatedNav';
 // Temporarily removed useI18n due to runtime errors
 // import { useI18n } from '@/locales/client';
 
 export default function Header() {
-  // const t = useI18n(); // Temporarily commented out
+
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   
@@ -34,11 +34,14 @@ export default function Header() {
   };
   
   const { locale, path: currentPath } = getLocaleAndPath();
-  
-  const navLinks = TranslatedNav().map(link => ({
-    ...link,
-    href: link.key === 'home' ? `/${locale}` : `/${locale}/${link.key}`,
-  }));
+  const translatedNavItems = useTranslatedNav();
+
+  const navLinks = useMemo(() => {
+    return translatedNavItems.map(link => ({
+      ...link,
+      href: link.key === 'home' ? `/${locale}` : `/${locale}/${link.key}`,
+    }));
+  }, [locale, translatedNavItems]);
 
   return (
     <header 

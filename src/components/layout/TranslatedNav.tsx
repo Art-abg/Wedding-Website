@@ -2,7 +2,7 @@
 
 import { useI18n } from '@/locales/client';
 
-export default function TranslatedNav() {
+export default function useTranslatedNav() {
   const t = useI18n();
 
   const navLinks = [
