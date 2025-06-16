@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
-import { textReveal, letterAnimation } from '../animations/MotionVariants';
+import { textReveal } from '../animations/MotionVariants';
 
 interface AnimatedTextProps {
   text: string;
@@ -28,13 +28,13 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   // Container variants for staggered animations
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
-    visible: (i = 1) => ({
+    visible: {
       opacity: 1,
       transition: { 
         staggerChildren, 
         delayChildren: delay,
       }
-    })
+    }
   };
   
   // Child variants for individual elements (words, letters, etc.)
@@ -91,7 +91,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   const blockVariants = textReveal(delay);
 
   // Dynamically set the HTML tag using motion
-  const Tag = motion[tag] as any;
+  const Tag = motion[tag] as React.ElementType;
 
   // Render different animation types
   const renderAnimatedText = () => {

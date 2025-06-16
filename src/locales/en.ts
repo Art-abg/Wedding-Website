@@ -50,8 +50,8 @@ export default {
       attendingNo: 'No, I cannot make it.',
       guestsLabel: 'Number of Guests (including yourself)',
       guestsPlaceholder: 'e.g., 2',
-      dietaryLabel: 'Dietary Restrictions or Allergies (Optional)',
-      dietaryPlaceholder: 'e.g., vegetarian, gluten-free, nut allergy',
+      phoneLabel: 'Phone Number', // New
+      phonePlaceholder: '+123456789', // New
       messageLabel: 'Leave a Message (Optional)',
       messagePlaceholder: 'Any special requests or notes for Anna & Artur?',
       submitButton: 'Send RSVP',

@@ -10,9 +10,9 @@ import styles from './page.module.css';
 interface FormData {
   name: string;
   email: string;
+  phone: string;
   attending: "yes" | "no" | "";
   guests: string; // Store as string for input, parse to number for submission
-  dietary: string;
   message: string;
 }
 
@@ -31,9 +31,9 @@ export default function RsvpPage() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
+    phone: "",
     attending: "",
     guests: "1",
-    dietary: "",
     message: "",
   });
   const [errors, setErrors] = useState<FormErrors>({});
@@ -74,9 +74,9 @@ export default function RsvpPage() {
       const submissionData = {
         name: formData.name,
         email: formData.email || null, // Ensure null if empty
+        phone: formData.phone || null,
         is_attending: formData.attending === "yes",
         guest_count: formData.attending === "yes" ? parseInt(formData.guests, 10) : 0,
-        dietary_restrictions: formData.dietary || null,
         message: formData.message || null,
         locale: currentLocale,
       };
@@ -93,9 +93,9 @@ export default function RsvpPage() {
       setFormData({
         name: "",
         email: "",
+        phone: "",
         attending: "",
         guests: "1",
-        dietary: "",
         message: "",
       });
       setErrors({});
@@ -262,6 +262,25 @@ export default function RsvpPage() {
             />
           </div>
 
+          {/* Phone Field */}
+          <div>
+            <label
+              htmlFor="phone"
+              className="block text-sm font-medium text-green-800"
+            >
+              {t("form.phoneLabel")}
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              id="phone"
+              value={formData.phone}
+              onChange={handleInputChange}
+              placeholder={t("form.phonePlaceholder")}
+              className="mt-1 block w-full px-4 py-2.5 border border-gold-300 rounded-lg shadow-sm focus:ring-gold-500 focus:border-gold-500 sm:text-sm bg-white/70 placeholder-green-500/70 text-green-800"
+            />
+          </div>
+
           {/* Attending Status */}
           <div className="mb-8">
             <label className="block text-sm font-medium text-green-700 mb-3">{t('form.attendingLabel')}</label>
@@ -319,25 +338,6 @@ export default function RsvpPage() {
               )}
             </AnimatedSection>
           )}
-
-          {/* Dietary Restrictions Field */}
-          <div>
-            <label
-              htmlFor="dietary"
-              className="block text-sm font-medium text-green-800"
-            >
-              {t("form.dietaryLabel")}
-            </label>
-            <textarea
-              name="dietary"
-              id="dietary"
-              rows={3}
-              value={formData.dietary}
-              onChange={handleInputChange}
-              placeholder={t("form.dietaryPlaceholder")}
-              className="mt-1 block w-full px-4 py-2.5 border border-gold-300 rounded-lg shadow-sm focus:ring-gold-500 focus:border-gold-500 sm:text-sm bg-white/70 placeholder-green-500/70 text-green-800"
-            />
-          </div>
 
           {/* Message Field */}
           <div>

@@ -52,8 +52,8 @@ export default {
       attendingNo: "Ոչ, չեմ կարողանա",
       guestsLabel: "Հյուրերի քանակը (ներառյալ ձեզ)",
       guestsPlaceholder: "օրինակ՝ 2",
-      dietaryLabel: "Սննդային սահմանափակումներ կամ ալերգիաներ (ըստ ցանկության)",
-      dietaryPlaceholder: "օրինակ՝ բուսակեր, առանց գլյուտենի, ընկույզի ալերգիա",
+      phoneLabel: "Հեռախոսահամար",
+      phonePlaceholder: "+374xxxxxxxx",
       messageLabel: "Թողնել հաղորդագրություն (ըստ ցանկության)",
       messagePlaceholder:
         "Հատուկ խնդրանքներ կամ նշումներ Աննայի և Արթուրի համար",

@@ -44,12 +44,10 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
 }>) {
-  const locale = params.locale || await getCurrentLocale();
+  const locale = await getCurrentLocale();
 
   return (
     <html lang={locale} className="scroll-smooth">
