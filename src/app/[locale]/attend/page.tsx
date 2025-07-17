@@ -1,18 +1,29 @@
 "use client";
 
-import { useState, FormEvent } from 'react';
-import { useScopedI18n, useCurrentLocale } from '@/locales/client';
-import AnimatedSection from '@/components/AnimatedSection';
-import Link from 'next/link';
-import { supabase } from '@/lib/supabaseClient';
-import styles from './page.module.css';
+import { useState, FormEvent } from "react";
+import { useScopedI18n, useCurrentLocale } from "@/locales/client";
+import AnimatedSection from "@/components/AnimatedSection";
+import Link from "next/link";
+import { supabase } from "@/lib/supabaseClient";
+import { motion } from "framer-motion";
+import {
+  FloralElement,
+  GoldenAccent,
+  OrnamentalDivider,
+  AnimatedBackgroundPattern
+} from "@/components/ui/EnhancedDecorativeElements";
+import PageTransition from "@/components/ui/PageTransition";
+import {
+  AnimatedHeading,
+  default as AnimatedText
+} from "@/components/ui/AnimatedText";
 
 interface FormData {
   name: string;
   email: string;
   phone: string;
   attending: "yes" | "no" | "";
-  guests: string; // Store as string for input, parse to number for submission
+  guests: string;
   message: string;
 }
 
@@ -22,11 +33,40 @@ interface FormErrors {
   guests?: string;
 }
 
+// RSVP Confirmation Display component
+interface RsvpConfirmationDisplayProps {
+  t: ReturnType<typeof useScopedI18n>;
+  tHome: ReturnType<typeof useScopedI18n>;
+  currentLocale: string;
+}
+
+function RsvpConfirmationDisplay({ t, tHome, currentLocale }: RsvpConfirmationDisplayProps) {
+  return (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5 }}
+    className="bg-green-50 border-2 border-gold-200 rounded-lg p-6 mb-8 text-center"
+  >
+    <h3 className="text-2xl font-dancing-script text-gold-600 mb-3">
+      {t("form.submissionSuccessTitle")}
+    </h3>
+    <GoldenAccent animation="shimmer" width="w-24" className="mx-auto my-2" />
+    <p className="text-forest-light mb-4">{t("form.submissionSuccessMessage")}</p>
+    <Link
+      href={`/${currentLocale}`}
+      className="inline-block px-6 py-2 bg-gold-500 hover:bg-gold-600 text-white font-medium rounded-lg transition-colors"
+    >
+      {tHome("backToHome")}
+    </Link>
+  </motion.div>
+  );
+}
+
 export default function RsvpPage() {
-  const t = useScopedI18n('rsvpPage');
-  const tHome = useScopedI18n('home');
+  const t = useScopedI18n("rsvpPage");
+  const tHome = useScopedI18n("home");
   const currentLocale = useCurrentLocale();
-  // Removed unused rsvpDeadline variable
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -34,7 +74,7 @@ export default function RsvpPage() {
     phone: "",
     attending: "",
     guests: "1",
-    message: "",
+    message: ""
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -73,22 +113,22 @@ export default function RsvpPage() {
     try {
       const submissionData = {
         name: formData.name,
-        email: formData.email || null, // Ensure null if empty
+        email: formData.email || null,
         phone: formData.phone || null,
         is_attending: formData.attending === "yes",
-        guest_count: formData.attending === "yes" ? parseInt(formData.guests, 10) : 0,
+        guest_count:
+          formData.attending === "yes" ? parseInt(formData.guests, 10) : 0,
         message: formData.message || null,
-        locale: currentLocale,
+        locale: currentLocale
       };
 
-      const { error } = await supabase
-        .from("rsvps") // Make sure 'rsvps' table exists in your Supabase
-        .insert([submissionData]);
+      const { error } = await supabase.from("rsvps").insert([submissionData]);
 
       if (error) {
         throw error;
       }
-
+      
+      // Set success status and reset form
       setSubmissionStatus("success");
       setFormData({
         name: "",
@@ -96,19 +136,20 @@ export default function RsvpPage() {
         phone: "",
         attending: "",
         guests: "1",
-        message: "",
+        message: ""
       });
       setErrors({});
-    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
-      console.error('RSVP Submission Error:', error);
-      // Log specific Supabase error properties if available
-      if (error && typeof error === 'object') {
-        if ('message' in error) console.error('Supabase Error Message:', error.message);
-        if ('details' in error) console.error('Supabase Error Details:', error.details);
-        if ('hint' in error) console.error('Supabase Error Hint:', error.hint);
-        if ('code' in error) console.error('Supabase Error Code:', error.code);
+    } catch (error: unknown) {
+      console.error("RSVP Submission Error:", error);
+      if (error && typeof error === "object") {
+        if ("message" in error)
+          console.error("Supabase Error Message:", error.message);
+        if ("details" in error)
+          console.error("Supabase Error Details:", error.details);
+        if ("hint" in error) console.error("Supabase Error Hint:", error.hint);
+        if ("code" in error) console.error("Supabase Error Code:", error.code);
       }
-      setSubmissionStatus('error');
+      setSubmissionStatus("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -125,258 +166,455 @@ export default function RsvpPage() {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
-  // Removed unused handleAttendingChange function
 
   if (submissionStatus === "success") {
     return (
-      <AnimatedSection
-        tag="div"
-        delay={0.2}
-        className="min-h-screen bg-gradient-to-br from-cream-100 to-blush-300/30 flex flex-col items-center justify-center p-6 text-center"
-      >
-        <h1 className="font-parisienne text-5xl md:text-7xl text-gold-600 mb-6">{t('form.submissionSuccessTitle')}</h1>
-        <p className="text-lg text-green-800 mb-8 max-w-md">{t('form.submissionSuccessMessage')}</p>
-        <Link href={`/${currentLocale}`} className="px-8 py-3 bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-lg shadow-md transition-colors duration-300">
-          {tHome('backToHome')}
-        </Link>
-      </AnimatedSection>
+      <PageTransition>
+        <div className="min-h-screen bg-gradient-to-br from-cream-100 to-blush-300/20 text-green-900 flex flex-col items-center py-16 px-4">
+          <AnimatedBackgroundPattern
+            pattern="dots"
+            opacity={0.03}
+            color="text-gold-500"
+            density="medium"
+          />
+
+          <AnimatedSection
+            tag="div"
+            delay={0.2}
+            className="max-w-3xl w-full bg-white/90 backdrop-blur-xl p-10 sm:p-12 rounded-2xl shadow-2xl border border-gold-200 text-center"
+          >
+            <FloralElement
+              position="top-right"
+              size="md"
+              opacity={0.08}
+              rotate={15}
+              delay={0.8}
+              className="text-champagne-gold hidden md:block"
+              animation="float"
+            />
+
+            <AnimatedHeading
+              text={t("form.submissionSuccessTitle")}
+              level={1}
+              className="text-4xl md:text-5xl lg:text-6xl font-dancing-script text-gold-600 mb-6"
+              textType="letters"
+              decorative={true}
+            />
+
+            <GoldenAccent
+              animation="shimmer"
+              delay={0.6}
+              width="w-32 md:w-48"
+              className="mx-auto my-4"
+            />
+
+            <AnimatedText
+              text={t("form.submissionSuccessMessage")}
+              tag="p"
+              className="text-lg md:text-xl text-forest-light font-cormorant italic mb-8 max-w-md mx-auto"
+              delay={0.7}
+              type="block"
+            />
+
+            <Link
+              href={`/${currentLocale}`}
+              className="inline-block px-8 py-3 bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            >
+              {tHome("backToHome")}
+            </Link>
+
+            <FloralElement
+              position="bottom-left"
+              size="md"
+              opacity={0.08}
+              rotate={-10}
+              delay={1.0}
+              className="text-champagne-gold hidden md:block"
+              animation="float"
+            />
+          </AnimatedSection>
+        </div>
+      </PageTransition>
     );
   }
 
   if (submissionStatus === "error") {
     return (
-      <AnimatedSection
-        tag="div"
-        delay={0.2}
-        className="min-h-screen bg-gradient-to-br from-cream-100 to-blush-300/30 flex flex-col items-center justify-center p-6 text-center"
-      >
-        <h1 className="font-parisienne text-5xl md:text-7xl text-red-600 mb-6">
-          {t("form.submissionErrorTitle")}
-        </h1>
-        <p className="text-lg text-green-800 mb-8 max-w-md">{t('form.submissionErrorMessage')}</p>
-        <button 
-          onClick={() => setSubmissionStatus(null)} 
-          className="px-8 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md transition-colors duration-300 mb-4">
-          {t('form.tryAgainButton')}
-        </button>
-        <Link href={`/${currentLocale}`} className="text-sm text-gold-600 hover:text-gold-700">
-          {tHome('backToHome')}
-        </Link>
-      </AnimatedSection>
+      <PageTransition>
+        <div className="min-h-screen bg-gradient-to-br from-cream-100 to-blush-300/20 text-green-900 flex flex-col items-center py-16 px-4">
+          <AnimatedBackgroundPattern
+            pattern="dots"
+            opacity={0.03}
+            color="text-gold-500"
+            density="medium"
+          />
+
+          <AnimatedSection
+            tag="div"
+            delay={0.2}
+            className="max-w-3xl w-full bg-white/90 backdrop-blur-xl p-10 sm:p-12 rounded-2xl shadow-2xl border border-gold-200 text-center"
+          >
+            <AnimatedHeading
+              text={t("form.submissionErrorTitle")}
+              level={1}
+              className="text-4xl md:text-5xl lg:text-6xl font-dancing-script text-red-600 mb-6"
+              textType="letters"
+              decorative={true}
+            />
+
+            <GoldenAccent
+              animation="shimmer"
+              delay={0.6}
+              width="w-32 md:w-48"
+              className="mx-auto my-4"
+            />
+
+            <AnimatedText
+              text={t("form.submissionErrorMessage")}
+              tag="p"
+              className="text-lg md:text-xl text-forest-light font-cormorant italic mb-8 max-w-md mx-auto"
+              delay={0.7}
+              type="block"
+            />
+
+            <div className="space-y-4">
+              <button
+                onClick={() => setSubmissionStatus(null)}
+                className="px-8 py-3 bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                {t("form.tryAgainButton")}
+              </button>
+
+              <div className="pt-4">
+                <Link
+                  href={`/${currentLocale}`}
+                  className="text-gold-600 hover:text-gold-700 hover:underline transition-colors"
+                >
+                  {tHome("backToHome")}
+                </Link>
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </PageTransition>
     );
   }
 
   return (
-    <div className={styles.rsvpBackground}>
-      
-      {/* Decorative Elements */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-gold-100/30 to-transparent" aria-hidden="true"></div>
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-gold-100/30 to-transparent" aria-hidden="true"></div>
-      
-      {/* Page Title and Description Section */}
-      <AnimatedSection delay={0.1} className="text-center mb-16 max-w-3xl w-full px-4 relative">
-        {/* Gold ornamental divider above title */}
-        <div className="flex justify-center mb-6" aria-hidden="true">
-          <div className="w-24 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent"></div>
-        </div>
-        
-        <h1 className="font-parisienne text-6xl md:text-8xl text-gold-600 mb-4 tracking-wide">
-          {t("title")}
-        </h1>
-        
-        <p className="text-xl text-green-800 mb-2 font-light tracking-wider">
-          {t("description")}
-        </p>
-        
-        {/* Gold ornamental divider below description */}
-        <div className="flex justify-center mt-8" aria-hidden="true">
-          <div className="relative">
-            <div className="w-48 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent"></div>
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-gold-400 rounded-full transform rotate-45"></div>
-          </div>
-        </div>
-      </AnimatedSection>
+    <PageTransition>
+      <div className="min-h-screen bg-gradient-to-br from-cream-100 to-blush-300/20">
+        {/* Background Pattern */}
+        <AnimatedBackgroundPattern
+          pattern="dots"
+          opacity={0.03}
+          color="text-gold-500"
+          density="medium"
+        />
 
-      {/* RSVP Form Card Section */}
-      <AnimatedSection
-        delay={0.3}
-        tag="main"
-        className="max-w-2xl w-full bg-white/90 backdrop-blur-xl p-10 sm:p-12 md:p-14 rounded-2xl shadow-2xl border border-gold-200 relative overflow-hidden"
-      >
-        {/* Decorative corner elements */}
-        <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-gold-300/60 rounded-tl-xl" aria-hidden="true"></div>
-        <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-gold-300/60 rounded-tr-xl" aria-hidden="true"></div>
-        <div className="absolute bottom-0 left-0 w-24 h-24 border-b-2 border-l-2 border-gold-300/60 rounded-bl-xl" aria-hidden="true"></div>
-        <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-gold-300/60 rounded-br-xl" aria-hidden="true"></div>
-        
-        {/* Subtle gold accent line */}
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent" aria-hidden="true"></div>
-        {/* The h2 title and the erroneous subtitle paragraph for the form card itself are removed as the main page title and description serve this purpose now */}
-        
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-8" /* Form elements will have their own margins bottom */
-        >
-          {/* Name Field */}
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-green-800"
-            >
-              {t("form.nameLabel")}
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              value={formData.name}
-              onChange={handleInputChange}
-              placeholder={t("form.namePlaceholder")}
-              className={`mt-1 block w-full px-4 py-2.5 border ${errors.name ? 'border-red-500' : 'border-gold-300'} rounded-lg shadow-sm focus:ring-gold-500 focus:border-gold-500 sm:text-sm bg-white/70 placeholder-green-500/70 text-green-800`}
-              {...(errors.name && { "aria-invalid": "true" })}
-              aria-describedby={errors.name ? "name-error" : undefined}
+        {/* Decorative Elements */}
+        <FloralElement
+          position="top-right"
+          size="lg"
+          opacity={0.08}
+          rotate={15}
+          delay={1.2}
+          className="text-champagne-gold hidden md:block"
+          animation="float"
+        />
+
+        <FloralElement
+          position="bottom-left"
+          size="lg"
+          opacity={0.08}
+          rotate={-10}
+          delay={1.6}
+          className="text-champagne-gold hidden md:block"
+          animation="float"
+        />
+
+        <FloralElement
+          position="center-left"
+          size="md"
+          opacity={0.06}
+          rotate={20}
+          delay={2.0}
+          className="text-champagne-gold hidden lg:block"
+          animation="float"
+        />
+
+        <div className="flex flex-col items-center py-16 px-4">
+          {/* Page Title and Description Section */}
+          <AnimatedSection
+            delay={0.1}
+            className="text-center mb-10 max-w-3xl w-full px-4 relative"
+          >
+            {/* Gold ornamental divider above title */}
+            <GoldenAccent
+              animation="shimmer"
+              delay={0.4}
+              width="w-24 md:w-32"
+              className="mx-auto mb-6"
             />
-            {errors.name && (
-              <p id="name-error" className="mt-1 text-xs text-red-600">
-                {errors.name}
-              </p>
-            )}
-          </div>
 
-          {/* Email Field */}
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-green-800"
-            >
-              {t("form.emailLabel")}
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              placeholder={t("form.emailPlaceholder")}
-              className="mt-1 block w-full px-4 py-2.5 border border-gold-300 rounded-lg shadow-sm focus:ring-gold-500 focus:border-gold-500 sm:text-sm bg-white/70 placeholder-green-500/70 text-green-800"
+            <AnimatedHeading
+              text={t("title")}
+              level={1}
+              className="text-5xl md:text-6xl lg:text-7xl font-dancing-script text-gold-600 mb-4"
+              textType="letters"
+              decorative={true}
             />
-          </div>
 
-          {/* Phone Field */}
-          <div>
-            <label
-              htmlFor="phone"
-              className="block text-sm font-medium text-green-800"
-            >
-              {t("form.phoneLabel")}
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              id="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              placeholder={t("form.phonePlaceholder")}
-              className="mt-1 block w-full px-4 py-2.5 border border-gold-300 rounded-lg shadow-sm focus:ring-gold-500 focus:border-gold-500 sm:text-sm bg-white/70 placeholder-green-500/70 text-green-800"
+            <AnimatedText
+              text={t("description")}
+              tag="p"
+              className="text-lg md:text-xl text-forest-light font-cormorant italic tracking-wider"
+              delay={0.7}
+              type="block"
             />
-          </div>
 
-          {/* Attending Status */}
-          <div className="mb-8">
-            <label className="block text-sm font-medium text-green-700 mb-3">{t('form.attendingLabel')}</label>
-            <div className="mt-2 grid grid-cols-2 gap-4">
-              {[ 'yes', 'no' ].map((option) => (
-                <label
-                  key={option}
-                  htmlFor={`attending${option.charAt(0).toUpperCase() + option.slice(1)}`}
-                  className={`flex items-center justify-center p-4 border rounded-lg cursor-pointer transition-all duration-200 ease-in-out shadow-sm 
-                    ${formData.attending === option 
-                      ? 'bg-gold-500 border-gold-600 text-white ring-2 ring-offset-2 ring-gold-500 shadow-lg scale-105' 
-                      : 'bg-white/50 border-gold-300 hover:border-gold-500 hover:bg-gold-500/10 text-green-800'}`}
-                >
-                  <input
-                    type="radio"
-                    id={`attending${option.charAt(0).toUpperCase() + option.slice(1)}`}
-                    name="attending"
-                    value={option}
-                    checked={formData.attending === option}
-                    onChange={handleInputChange}
-                    className="sr-only" // Hide original radio, style the label
-                  />
-                  <span className="text-base font-medium">{t(option === 'yes' ? 'form.attendingYes' : 'form.attendingNo')}</span>
-                </label>
-              ))}
-            </div>
-            {errors.attending && <p className="mt-2 text-sm text-red-600" id="attending-error">{errors.attending}</p>}
-          </div>
+            {/* Gold ornamental divider below description */}
+            <OrnamentalDivider
+              className="mt-6 mb-4"
+              animation="shimmer"
+              variant="diamond"
+            />
+          </AnimatedSection>
 
-          {/* Number of Guests Field (conditional) */}
-          {formData.attending === "yes" && (
-            <AnimatedSection tag="div" delay={0.1}>
-              <label
-                htmlFor="guests"
-                className="block text-sm font-medium text-green-800"
-              >
-                {t("form.guestsLabel")}
-              </label>
-              <input
-                type="number"
-                name="guests"
-                id="guests"
-                value={formData.guests}
-                onChange={handleInputChange}
-                placeholder={t("form.guestsPlaceholder")}
-                min="1"
-                className={`mt-1 block w-full px-4 py-2.5 border ${errors.guests ? 'border-red-500' : 'border-gold-300'} rounded-lg shadow-sm focus:ring-gold-500 focus:border-gold-500 sm:text-sm bg-white/70 placeholder-green-500/70 text-green-800`}
-                {...(errors.guests && { "aria-invalid": "true" })}
-                aria-describedby={errors.guests ? "guests-error" : undefined}
+          {/* RSVP Form Card Section */}
+          <AnimatedSection
+            delay={0.3}
+            tag="main"
+            className="max-w-2xl w-full bg-white/90 backdrop-blur-xl p-10 sm:p-12 rounded-2xl shadow-2xl border border-gold-200 relative overflow-hidden mb-16"
+          >
+            {/* Subtle decorative background element */}
+            <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+              <FloralElement
+                position="center"
+                size="xl"
+                opacity={0.07}
+                rotate={0}
+                delay={0.5}
+                className="text-forest"
+                animation="float"
               />
-              {errors.guests && (
-                <p id="guests-error" className="mt-1 text-xs text-red-600">
-                  {errors.guests}
-                </p>
+            </div>
+
+            {/* Subtle gold accent lines */}
+            <div
+              className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent"
+              aria-hidden="true"
+            ></div>
+            <div
+              className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/3 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent"
+              aria-hidden="true"
+            ></div>
+
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+              {submissionStatus === "success" && (
+                <RsvpConfirmationDisplay t={t} tHome={tHome} currentLocale={currentLocale} />
               )}
-            </AnimatedSection>
-          )}
+              
+              {submissionStatus !== "success" && (
+              <>
+                {/* Name Field */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                  <label htmlFor="name" className="block text-sm font-medium text-forest mb-2">
+                    {t("form.nameLabel")}
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder={t("form.namePlaceholder")}
+                    className={`block w-full px-4 py-3 border ${
+                      errors.name ? "border-red-500" : "border-gold-300"
+                    } rounded-lg shadow-sm focus:ring-2 focus:ring-gold-500 focus:border-gold-500 bg-white/70 placeholder-forest-light/70 text-forest transition-all duration-200`}
+                    {...(errors.name && { "aria-invalid": "true" })}
+                    aria-describedby={errors.name ? "name-error" : undefined}
+                  />
+                  {errors.name && (
+                    <p id="name-error" className="mt-1 text-sm text-red-600">
+                      {errors.name}
+                    </p>
+                  )}
+                </motion.div>
 
-          {/* Message Field */}
-          <div>
-            <label
-              htmlFor="message"
-              className="block text-sm font-medium text-green-800"
-            >
-              {t("form.messageLabel")}
-            </label>
-            <textarea
-              name="message"
-              id="message"
-              rows={4}
-              value={formData.message}
-              onChange={handleInputChange}
-              placeholder={t("form.messagePlaceholder")}
-              className="mt-1 block w-full px-4 py-2.5 border border-gold-300 rounded-lg shadow-sm focus:ring-gold-500 focus:border-gold-500 sm:text-sm bg-white/70 placeholder-green-500/70 text-green-800"
-            />
-          </div>
+                {/* Email and Phone Fields in 2 columns on larger screens */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Email Field */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                  >
+                    <label htmlFor="email" className="block text-sm font-medium text-forest mb-2">
+                      {t("form.emailLabel")}
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder={t("form.emailPlaceholder")}
+                      className="block w-full px-4 py-3 border border-gold-300 rounded-lg shadow-sm focus:ring-2 focus:ring-gold-500 focus:border-gold-500 bg-white/70 placeholder-forest-light/70 text-forest transition-all duration-200"
+                    />
+                  </motion.div>
 
-          {/* Submit Button */}
-          <div className="pt-6">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full px-8 py-3.5 bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed"
-            >
-              {isSubmitting
-                ? t("form.submittingButton")
-                : t("form.submitButton")}
-            </button>
-          </div>
-          <div className="text-center mt-6">
-            <Link href={`/${currentLocale}`} className="text-sm font-medium text-gold-600 hover:text-gold-700 hover:underline transition-colors">
-             ‹ {tHome('backToHome')}
-            </Link>
-          </div>
-        </form>
-      </AnimatedSection>
-    </div>
+                  {/* Phone Field */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                  >
+                    <label htmlFor="phone" className="block text-sm font-medium text-forest mb-2">
+                      {t("form.phoneLabel")}
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      id="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder={t("form.phonePlaceholder")}
+                      className="block w-full px-4 py-3 border border-gold-300 rounded-lg shadow-sm focus:ring-2 focus:ring-gold-500 focus:border-gold-500 bg-white/70 placeholder-forest-light/70 text-forest transition-all duration-200"
+                    />
+                  </motion.div>
+                </div>
+
+                {/* Attending Options */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                >
+                  <label className="block text-sm font-medium text-forest mb-3">
+                    {t("form.attendingLabel")} <span className="text-red-500">*</span>
+                  </label>
+                  <div className="grid grid-cols-2 gap-4">
+                    {(['yes', 'no'] as const).map((val) => (
+                      <label
+                        key={val}
+                        htmlFor={`attending-${val}`}
+                        className={`flex items-center justify-center p-4 border rounded-lg cursor-pointer transition-all duration-200 ease-in-out shadow-sm 
+                          ${
+                            formData.attending === val
+                              ? "bg-gold-500 border-gold-600 text-white ring-2 ring-offset-2 ring-gold-500 shadow-lg scale-105"
+                              : "bg-white/50 border-gold-300 hover:border-gold-500 hover:bg-gold-500/10 text-forest"
+                          }`}
+                      >
+                        <input
+                          type="radio"
+                          id={`attending-${val}`}
+                          name="attending"
+                          value={val}
+                          checked={formData.attending === val}
+                          onChange={handleInputChange}
+                          className="sr-only"
+                        />
+                        <span className="text-base font-medium">
+                          {t(val === "yes" ? "form.attendingYes" : "form.attendingNo")}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                  {errors.attending && (
+                    <p className="mt-2 text-sm text-red-600" id="attending-error">
+                      {errors.attending}
+                    </p>
+                  )}
+                </motion.div>
+
+                {/* Number of Guests Field (conditional) */}
+                {formData.attending === "yes" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }} // Adjusted delay, should be after attending options if shown
+                  >
+                    <label htmlFor="guests" className="block text-sm font-medium text-forest mb-2">
+                      {t("form.guestsLabel")}
+                    </label>
+                    <input
+                      type="number"
+                      name="guests"
+                      id="guests"
+                      value={formData.guests}
+                      onChange={handleInputChange}
+                      placeholder={t("form.guestsPlaceholder")}
+                      min="1"
+                      className={`block w-full px-4 py-3 border ${
+                        errors.guests ? "border-red-500" : "border-gold-300"
+                      } rounded-lg shadow-sm focus:ring-2 focus:ring-gold-500 focus:border-gold-500 bg-white/70 placeholder-forest-light/70 text-forest transition-all duration-200`}
+                      {...(errors.guests && { "aria-invalid": "true" })}
+                      aria-describedby={errors.guests ? "guests-error" : undefined}
+                    />
+                    {errors.guests && (
+                      <p id="guests-error" className="mt-1 text-sm text-red-600">
+                        {errors.guests}
+                      </p>
+                    )}
+                  </motion.div>
+                )}
+
+                {/* Message Field */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                >
+                  <label htmlFor="message" className="block text-sm font-medium text-forest mb-2">
+                    {t("form.messageLabel")}
+                  </label>
+                  <textarea
+                    name="message"
+                    id="message"
+                    rows={4}
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    placeholder={t("form.messagePlaceholder")}
+                    className="block w-full px-4 py-3 border border-gold-300 rounded-lg shadow-sm focus:ring-2 focus:ring-gold-500 focus:border-gold-500 bg-white/70 placeholder-forest-light/70 text-forest transition-all duration-200"
+                  />
+                </motion.div>
+
+                {/* Submit Button */}
+                <motion.div
+                  className="pt-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1.0 }}
+                >
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full px-8 py-4 bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                  >
+                    {isSubmitting
+                      ? t("form.submittingButton")
+                      : t("form.submitButton")}
+                  </button>
+
+                  <div className="text-center mt-8">
+                    <Link
+                      href={`/${currentLocale}`}
+                      className="text-gold-600 hover:text-gold-700 hover:underline transition-colors font-medium"
+                    >
+                      ‹ {tHome("backToHome")}
+                    </Link>
+                  </div>
+                </motion.div>
+              </>
+            )}
+            </form>
+          </AnimatedSection>
+        </div>
+      </div>
+    </PageTransition>
   );
 }
