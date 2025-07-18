@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+
 import { motion } from "framer-motion";
 import styles from "./ChildhoodPhotos.module.css";
 import { useInView } from "react-intersection-observer";
@@ -32,9 +33,16 @@ const ChildhoodPhotos: React.FC<ChildhoodPhotosProps> = ({ title, text }) => {
       rotate: isLeft ? -15 : 15
     },
     visible: {
-      x: isLeft ? "-40%" : "40%",
+      x:
+        typeof window !== "undefined" && window.innerWidth < 768
+          ? isLeft
+            ? "-31%"
+            : "31%"
+          : isLeft
+          ? "-40%"
+          : "40%",
       opacity: 1,
-      rotate: isLeft ? -10 : 10,
+      rotate: isLeft ? -15 : 15,
       transition: { type: "spring", stiffness: 30, damping: 10, duration: 2 }
     }
   });
@@ -53,27 +61,28 @@ const ChildhoodPhotos: React.FC<ChildhoodPhotosProps> = ({ title, text }) => {
             className={`${styles.polaroid} ${styles.left}`}
             variants={photoVariants(true)}
           >
-            <Image
-              src="/child-Artur.jpg"
-              alt="Artur as a child"
-              width={250}
-              height={300}
-              objectFit="cover"
-              objectPosition="center 20%"
-            />
+            <div className={styles.imageContainer}>
+              <Image
+                src="/child-Artur.jpg"
+                alt="Artur as a child"
+                layout="fill"
+                objectFit="cover"
+                objectPosition="75% 20%"
+              />
+            </div>
           </motion.div>
           <motion.div
             className={`${styles.polaroid} ${styles.right}`}
             variants={photoVariants(false)}
           >
-            <Image
-              src="/child-Anna.JPG"
-              alt="Anna as a child"
-              width={250}
-              height={300}
-              objectFit="cover"
-              objectPosition="center center"
-            />
+            <div className={styles.imageContainer}>
+              <Image
+                src="/child-Anna.JPG"
+                alt="Anna as a child"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
           </motion.div>
         </div>
       </motion.div>

@@ -27,6 +27,7 @@ export default {
     heroTitleL2: "Wedding",
     weddingDateValue: "September 12, 2025",
     weddingTimeValue: "5:00 PM",
+    atTime: "at {time}",
     churchTimeValue: "2:00 PM",
     rsvpDeadlineValue: "August 20, 2025",
     church: {

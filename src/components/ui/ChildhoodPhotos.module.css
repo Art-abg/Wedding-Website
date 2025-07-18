@@ -7,7 +7,7 @@
 
 .title {
   font-size: 2.5rem;
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   color: #4b3c31;
   margin-bottom: 1rem;
 }
@@ -36,9 +36,11 @@
   transform-origin: center center;
 }
 
-.polaroid img {
-  width: 250px; /* Adjust image size as needed */
-  height: auto;
+.imageContainer {
+  position: relative;
+  width: 250px;
+  height: 300px;
+  overflow: hidden;
 }
 
 .polaroid.left {
@@ -47,4 +49,28 @@
 
 .polaroid.right {
   transform: rotate(10deg);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .text {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .photosContainer {
+    height: 300px;
+  }
+
+  .polaroid {
+    padding: 10px 10px 50px 10px;
+  }
+
+  .imageContainer {
+    width: 180px;
+    height: 220px;
+  }
 }

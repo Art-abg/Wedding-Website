@@ -128,7 +128,7 @@ export default async function HomePage() {
           <div className="relative overflow-hidden rounded-t-xl">
             {/* Golden border frame */}
             <div className="absolute inset-0 border-2 border-gold-400/30 rounded-t-xl z-30 pointer-events-none"></div>
-            
+
             {/* Main content container with split design - improved mobile layout */}
             <div className="flex flex-col md:flex-row h-auto md:h-[70vh]">
               {/* Left side - Image */}
@@ -136,70 +136,68 @@ export default async function HomePage() {
                 {/* Circular mask and decorative elements */}
                 <div className="absolute inset-0 flex items-center justify-center z-10">
                   <div className="relative w-[85%] h-[85%] md:w-[90%] md:h-[90%] rounded-full overflow-hidden border-4 md:border-8 border-cream-100/30 shadow-2xl">
-                    <Image 
+                    <Image
                       src={imageUrl}
                       alt={t("home.coupleImageAlt")}
                       fill
                       priority
                       sizes="(max-width: 768px) 85vw, 50vw"
                       className="object-cover object-center scale-105 transition-transform duration-10000 ease-in-out hover:scale-110"
-                      style={{ transformOrigin: 'center center' }}
+                      style={{ transformOrigin: "center center" }}
                     />
                   </div>
-                  
-                  {/* Decorative ring around the circle */}
-                  <div className="absolute w-[95%] h-[95%] md:w-[100%] md:h-[100%] rounded-full border-2 border-dashed border-gold-300/40 animate-spin-slow"></div>
+
+                  {/* Subtle animated golden ring */}
+                  <div className="absolute w-full h-full rounded-full border border-gold-400/20 animate-pulse"></div>
+                  <div className="absolute w-[92%] h-[92%] rounded-full border border-gold-400/20 animate-pulse delay-500"></div>
                 </div>
               </div>
-              
-              {/* Right side - Elegant text content with improved spacing */}
-              <div className="relative w-full md:w-2/5 h-auto py-10 md:h-full bg-gradient-to-br from-sage-light/90 to-cream-100/95 flex items-center justify-center p-4 md:p-10">
-                <div className="absolute top-0 left-0 w-full h-full opacity-5">
-                  <FloralElement
-                    position="center"
-                    size="xl"
-                    opacity={0.07}
-                    rotate={0}
-                    delay={0.5}
-                    className="text-forest"
-                    animation="float"
-                  />
+
+              {/* Right side - Redesigned Text Content */}
+              <div className="relative w-full md:w-2/5 h-auto py-12 md:h-full bg-cream-100/80 flex items-center justify-center p-6 md:p-10 backdrop-blur-sm">
+                <div className="absolute top-0 left-0 w-full h-full opacity-10">
+                  <AnimatedBackgroundPattern pattern="leaves" opacity={0.05} color="text-gold-500" density="low" />
                 </div>
-                
+
                 <ScrollAnimationWrapper
                   delay={0.4}
                   type="reveal"
                   direction="up"
-                  className="text-center z-10 w-full max-w-md"
+                  className="text-center z-10 w-full max-w-md flex flex-col items-center justify-center h-full"
                 >
                   <AnimatedHeading
                     text={t("home.celebrate")}
                     level={2}
-                    className="text-3xl sm:text-4xl md:text-5xl font-dancing-script text-forest drop-shadow-sm mb-4 md:mb-6"
+                    className="text-3xl sm:text-4xl md:text-5xl font-dancing-script text-forest drop-shadow-sm whitespace-nowrap"
                     textType="letters"
                     decorative={true}
                   />
-                  
-                  <GoldenAccent animation="shimmer" delay={0.6} width="w-24 md:w-32" className="mx-auto my-3 md:my-4" />
-                  
+
+                  <GoldenAccent
+                    animation="shimmer"
+                    delay={0.6}
+                    width="w-32 md:w-40"
+                    className="mx-auto my-6"
+                  />
+
                   <AnimatedText
                     text={t("home.weddingDate", { date: weddingDate, time: weddingTime })}
                     tag="p"
-                    className="text-lg sm:text-xl md:text-2xl text-forest-light font-cormorant italic tracking-wide mb-6 md:mb-8 px-2"
+                    className="text-xl sm:text-2xl font-cormorant text-forest-light tracking-wider"
                     delay={0.7}
                     type="block"
                   />
-                  
+
                   <ScrollAnimationWrapper
-                    delay={0.9}
+                    delay={1.0}
                     type="reveal"
-                    className="mt-4 md:mt-8"
+                    className="mt-10 w-full"
                   >
                     <Button
                       href="/attend"
                       variant="primary"
                       size="lg"
-                      className="transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-lg font-cormorant tracking-wider"
+                      className="w-full max-w-xs transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-lg font-cormorant tracking-wider py-3"
                     >
                       {t("home.rsvpButton")}
                     </Button>
@@ -207,7 +205,7 @@ export default async function HomePage() {
                 </ScrollAnimationWrapper>
               </div>
             </div>
-            
+
             {/* Decorative bottom accent */}
             <div className="h-1 bg-gradient-to-r from-transparent via-gold-400/60 to-transparent"></div>
           </div>
@@ -231,15 +229,19 @@ export default async function HomePage() {
                   level={3}
                   className="text-2xl font-cormorant text-forest mb-2"
                 />
-                <p className="text-lg text-forest-light">{t("home.registrationCeremony.time")}</p>
-                <p className="text-md text-gray-600">{t("home.registrationCeremony.description")}</p>
+                <p className="text-lg text-forest-light">
+                  {t("home.registrationCeremony.time")}
+                </p>
+                <p className="text-md text-gray-600">
+                  {t("home.registrationCeremony.description")}
+                </p>
               </ScrollAnimationWrapper>
             </div>
           </div>
 
-          <ChildhoodPhotos 
-            title={t('home.childhoodPhotos.title')}
-            text={t('home.childhoodPhotos.text')}
+          <ChildhoodPhotos
+            title={t("home.childhoodPhotos.title")}
+            text={t("home.childhoodPhotos.text")}
           />
 
           {/* Content Sections with scroll animations */}
@@ -306,7 +308,7 @@ export default async function HomePage() {
                 textType="letters"
                 decorative={false}
               />
-              
+
               {/* Church icon depiction */}
               <div className="my-6 flex justify-center">
                 <Image
@@ -328,7 +330,10 @@ export default async function HomePage() {
                   type="block"
                 />
                 <AnimatedText
-                  text={t("home.weddingDate", { date: weddingDate, time: churchTime })}
+                  text={t("home.weddingDate", {
+                    date: weddingDate,
+                    time: churchTime
+                  })}
                   tag="p"
                   className="text-md text-forest font-medium"
                   delay={0.3}

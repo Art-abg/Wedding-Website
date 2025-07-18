@@ -251,7 +251,8 @@ export const AnimatedHeading: React.FC<{
         >
           <div className="relative">
             <div className="w-48 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent"></div>
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-gold-400 rounded-full transform rotate-45"></div>
+            {/* Elegant shimmering dot as a central accent */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-gold-400 rounded-full shadow-[0_0_12px_4px_rgba(212,175,55,0.5)] animate-pulse"></div>
           </div>
         </motion.div>
       )}
