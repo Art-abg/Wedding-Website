@@ -124,90 +124,108 @@ export default async function HomePage() {
             className="absolute bottom-4 left-4 opacity-30"
           />
 
-          {/* Elegant Split Hero Section with circular design */}
-          <div className="relative overflow-hidden rounded-t-xl">
-            {/* Golden border frame */}
-            <div className="absolute inset-0 border-2 border-gold-400/30 rounded-t-xl z-30 pointer-events-none"></div>
+          {/* Modern Elegant Hero Section */}
+          <div className="relative overflow-hidden">
+            {/* Main content container with modern asymmetric design */}
+            <div className="flex flex-col lg:flex-row min-h-[80vh]">
+              {/* Left side - Modern Image Container */}
+              <div className="relative w-full lg:w-3/5 h-[60vh] lg:h-auto overflow-hidden">
+                {/* Subtle gradient overlay for depth */}
+                <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/5 z-10"></div>
 
-            {/* Main content container with split design - improved mobile layout */}
-            <div className="flex flex-col md:flex-row h-auto md:h-[70vh]">
-              {/* Left side - Image */}
-              <div className="relative w-full md:w-3/5 h-[50vh] md:h-full overflow-hidden py-6 md:py-0">
-                {/* Circular mask and decorative elements */}
-                <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div className="relative w-[85%] h-[85%] md:w-[90%] md:h-[90%] rounded-full overflow-hidden border-4 md:border-8 border-cream-100/30 shadow-2xl">
-                    <Image
-                      src={imageUrl}
-                      alt={t("home.coupleImageAlt")}
-                      fill
-                      priority
-                      sizes="(max-width: 768px) 85vw, 50vw"
-                      className="object-cover object-center scale-105 transition-transform duration-10000 ease-in-out hover:scale-110"
-                      style={{ transformOrigin: "center center" }}
-                    />
-                  </div>
-
-                  {/* Subtle animated golden ring */}
-                  <div className="absolute w-full h-full rounded-full border border-gold-400/20 animate-pulse"></div>
-                  <div className="absolute w-[92%] h-[92%] rounded-full border border-gold-400/20 animate-pulse delay-500"></div>
+                {/* Main image with modern styling */}
+                <div className="relative w-full h-full">
+                  <Image
+                    src={imageUrl}
+                    alt={t("home.coupleImageAlt")}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    className="object-cover object-center transition-transform duration-700 ease-out hover:scale-105"
+                    style={{ transformOrigin: "center center" }}
+                  />
                 </div>
+
+                {/* Elegant floating accent elements */}
+                <div className="absolute top-8 right-8 w-24 h-24 border border-white/20 rounded-full backdrop-blur-sm bg-white/5 animate-pulse hidden lg:block"></div>
+                <div className="absolute bottom-12 left-8 w-16 h-16 border border-white/15 rounded-full backdrop-blur-sm bg-white/5 animate-pulse delay-1000 hidden lg:block"></div>
               </div>
 
-              {/* Right side - Redesigned Text Content */}
-              <div className="relative w-full md:w-2/5 h-auto py-12 md:h-full bg-cream-100/80 flex items-center justify-center p-6 md:p-10 backdrop-blur-sm">
-                <div className="absolute top-0 left-0 w-full h-full opacity-10">
-                  <AnimatedBackgroundPattern pattern="leaves" opacity={0.05} color="text-gold-500" density="low" />
+              {/* Right side - Modern Text Content */}
+              <div className="relative w-full lg:w-2/5 bg-gradient-to-br from-cream-100/95 to-sage-light/30 backdrop-blur-xl flex items-center justify-center p-8 lg:p-12">
+                {/* Subtle background pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  <AnimatedBackgroundPattern
+                    pattern="dots"
+                    opacity={0.03}
+                    color="text-gold-500"
+                    density="low"
+                  />
                 </div>
 
                 <ScrollAnimationWrapper
-                  delay={0.4}
+                  delay={0.3}
                   type="reveal"
                   direction="up"
-                  className="text-center z-10 w-full max-w-md flex flex-col items-center justify-center h-full"
+                  className="text-center z-10 w-full max-w-md space-y-8"
                 >
-                  <AnimatedHeading
-                    text={t("home.celebrate")}
-                    level={2}
-                    className="text-3xl sm:text-4xl md:text-5xl font-dancing-script text-forest drop-shadow-sm whitespace-nowrap"
-                    textType="letters"
-                    decorative={true}
-                  />
+                  {/* Main heading with modern typography */}
+                  <div className="space-y-4">
+                    <AnimatedHeading
+                      text={t("home.celebrate")}
+                      level={1}
+                      className="text-4xl lg:text-6xl font-dancing-script text-forest leading-tight"
+                      textType="letters"
+                      decorative={false}
+                    />
 
-                  <GoldenAccent
-                    animation="shimmer"
-                    delay={0.6}
-                    width="w-32 md:w-40"
-                    className="mx-auto my-6"
-                  />
+                    {/* Minimalist accent line */}
+                    <div className="w-20 h-px bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto"></div>
+                  </div>
 
-                  <AnimatedText
-                    text={t("home.weddingDate", { date: weddingDate, time: weddingTime })}
-                    tag="p"
-                    className="text-xl sm:text-2xl font-cormorant text-forest-light tracking-wider"
-                    delay={0.7}
-                    type="block"
-                  />
+                  {/* Date and time with elegant spacing */}
+                  <div className="space-y-3">
+                    <AnimatedText
+                      text={weddingDate}
+                      tag="p"
+                      className="text-2xl lg:text-3xl font-cormorant text-forest font-light tracking-wide"
+                      delay={0.5}
+                      type="block"
+                    />
 
+                    <AnimatedText
+                      text={weddingTime}
+                      tag="p"
+                      className="text-lg lg:text-xl text-forest-light font-light tracking-widest uppercase"
+                      delay={0.7}
+                      type="letters"
+                    />
+                  </div>
+
+                  {/* Modern CTA button */}
                   <ScrollAnimationWrapper
-                    delay={1.0}
+                    delay={0.9}
                     type="reveal"
-                    className="mt-10 w-full"
+                    className="pt-6"
                   >
                     <Button
                       href="/attend"
                       variant="primary"
                       size="lg"
-                      className="w-full max-w-xs transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-lg font-cormorant tracking-wider py-3"
+                      className="px-12 py-4 bg-forest hover:bg-forest-light text-white font-medium tracking-wider transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border-0 rounded-none relative overflow-hidden group"
                     >
-                      {t("home.rsvpButton")}
+                      <span className="relative z-10">
+                        {t("home.rsvpButton")}
+                      </span>
+                      <div className="absolute inset-0 bg-gradient-to-r from-gold-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </Button>
                   </ScrollAnimationWrapper>
                 </ScrollAnimationWrapper>
               </div>
             </div>
 
-            {/* Decorative bottom accent */}
-            <div className="h-1 bg-gradient-to-r from-transparent via-gold-400/60 to-transparent"></div>
+            {/* Modern bottom accent - subtle and clean */}
+            <div className="h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent"></div>
           </div>
 
           {/* Schedule Section */}
