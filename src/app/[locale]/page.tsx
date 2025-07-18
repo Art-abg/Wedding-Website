@@ -10,6 +10,7 @@ import {
   OrnamentalDivider,
   AnimatedBackgroundPattern
 } from "@/components/ui/EnhancedDecorativeElements";
+import ChildhoodPhotos from "@/components/ui/ChildhoodPhotos";
 
 export default async function HomePage() {
   const t = await getI18n();
@@ -198,7 +199,7 @@ export default async function HomePage() {
                       href="/attend"
                       variant="primary"
                       size="lg"
-                      className="transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-lg"
+                      className="transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl bg-gold-500 hover:bg-gold-600 text-white font-semibold rounded-lg font-cormorant tracking-wider"
                     >
                       {t("home.rsvpButton")}
                     </Button>
@@ -210,6 +211,36 @@ export default async function HomePage() {
             {/* Decorative bottom accent */}
             <div className="h-1 bg-gradient-to-r from-transparent via-gold-400/60 to-transparent"></div>
           </div>
+
+          {/* Schedule Section */}
+          <div className="p-8 md:p-12 bg-cream-100/50">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
+              <ScrollAnimationWrapper delay={0.2} type="reveal" direction="up">
+                <AnimatedHeading
+                  text={t("home.church.title")}
+                  level={3}
+                  className="text-2xl font-cormorant text-forest mb-2"
+                />
+                <p className="text-lg text-forest-light">{churchTime}</p>
+                <p className="text-md text-gray-600">{t("home.church.name")}</p>
+              </ScrollAnimationWrapper>
+
+              <ScrollAnimationWrapper delay={0.4} type="reveal" direction="up">
+                <AnimatedHeading
+                  text={t("home.registrationCeremony.title")}
+                  level={3}
+                  className="text-2xl font-cormorant text-forest mb-2"
+                />
+                <p className="text-lg text-forest-light">{t("home.registrationCeremony.time")}</p>
+                <p className="text-md text-gray-600">{t("home.registrationCeremony.description")}</p>
+              </ScrollAnimationWrapper>
+            </div>
+          </div>
+
+          <ChildhoodPhotos 
+            title={t('home.childhoodPhotos.title')}
+            text={t('home.childhoodPhotos.text')}
+          />
 
           {/* Content Sections with scroll animations */}
           <div className="px-8 md:px-16 py-10 space-y-12">

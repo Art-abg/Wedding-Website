@@ -1,7 +1,9 @@
 "use client";
 
+"use client";
+
 import React from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion, Variants, TargetAndTransition } from 'framer-motion';
 import styles from './EnhancedDecorativeElements.module.css';
 import { floatingAnimation, shimmerEffect, pulseAnimation } from '../animations/MotionVariants';
 
@@ -47,38 +49,31 @@ const getPositionClasses = (position: string) => {
 
 // Get animation variants based on type
 const getAnimationVariant = (type: string, delay: number): Variants => {
-  switch(type) {
-    case 'float': return {
-      ...floatingAnimation,
+  const getVariant = (animation: Variants) => {
+    const animate = animation.animate as TargetAndTransition;
+    if (!animate) return animation;
+
+    return {
+      ...animation,
       animate: {
-        ...floatingAnimation.animate,
+        ...animate,
         transition: {
-          ...floatingAnimation.animate.transition,
-          delay
-        }
-      }
+          ...(animate.transition || {}),
+          delay,
+        },
+      },
     };
-    case 'pulse': return {
-      ...pulseAnimation,
-      animate: {
-        ...pulseAnimation.animate,
-        transition: {
-          ...pulseAnimation.animate.transition,
-          delay
-        }
-      }
-    };
-    case 'shimmer': return {
-      ...shimmerEffect,
-      animate: {
-        ...shimmerEffect.animate,
-        transition: {
-          ...shimmerEffect.animate.transition,
-          delay
-        }
-      }
-    };
-    default: return {};
+  };
+
+  switch (type) {
+    case 'float':
+      return getVariant(floatingAnimation);
+    case 'pulse':
+      return getVariant(pulseAnimation);
+    case 'shimmer':
+      return getVariant(shimmerEffect);
+    default:
+      return {};
   }
 };
 

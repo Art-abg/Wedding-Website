@@ -143,10 +143,21 @@ export const AnimatedText: React.FC<{
     }
   };
 
-  const Tag = motion[tag as keyof typeof motion];
-  
+  const motionComponents = {
+    h1: motion.h1,
+    h2: motion.h2,
+    h3: motion.h3,
+    h4: motion.h4,
+    h5: motion.h5,
+    h6: motion.h6,
+    p: motion.p,
+    span: motion.span,
+  };
+
+  const MotionTag = motionComponents[tag as keyof typeof motionComponents] || motion.p;
+
   return (
-    <Tag
+    <MotionTag
       className={className}
       variants={container}
       initial="hidden"
@@ -162,7 +173,7 @@ export const AnimatedText: React.FC<{
           {word}
         </motion.span>
       ))}
-    </Tag>
+    </MotionTag>
   );
 };
 

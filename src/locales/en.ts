@@ -2,8 +2,6 @@ export default {
   nav: {
     home: "Home",
     attend: "Attend",
-    details: "Details",
-    gallery: "Gallery",
     language: "Language"
   },
   home: {
@@ -35,6 +33,15 @@ export default {
       title: "Church Ceremony",
       name: "Surb Anna Church",
       mapLink: "View on Map"
+    },
+    registrationCeremony: {
+      title: "Marriage Registration",
+      time: "5:00 PM",
+      description: "The official signing will take place at the restaurant, accompanied by classical music and a welcome drink."
+    },
+    childhoodPhotos: {
+      title: "Our Story Begins",
+      text: "Two paths, once separate, now intertwine..."
     }
   },
   rsvpPage: { // Renamed from rsvp_form and new keys added
