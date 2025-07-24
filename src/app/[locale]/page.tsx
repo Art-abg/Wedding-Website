@@ -228,35 +228,6 @@ export default async function HomePage() {
             <div className="h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent"></div>
           </div>
 
-          {/* Schedule Section */}
-          <div className="p-8 md:p-12 bg-cream-100/50">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center">
-              <ScrollAnimationWrapper delay={0.2} type="reveal" direction="up">
-                <AnimatedHeading
-                  text={t("home.church.title")}
-                  level={3}
-                  className="text-2xl font-cormorant text-forest mb-2"
-                />
-                <p className="text-lg text-forest-light">{churchTime}</p>
-                <p className="text-md text-gray-600">{t("home.church.name")}</p>
-              </ScrollAnimationWrapper>
-
-              <ScrollAnimationWrapper delay={0.4} type="reveal" direction="up">
-                <AnimatedHeading
-                  text={t("home.registrationCeremony.title")}
-                  level={3}
-                  className="text-2xl font-cormorant text-forest mb-2"
-                />
-                <p className="text-lg text-forest-light">
-                  {t("home.registrationCeremony.time")}
-                </p>
-                <p className="text-md text-gray-600">
-                  {t("home.registrationCeremony.description")}
-                </p>
-              </ScrollAnimationWrapper>
-            </div>
-          </div>
-
           <ChildhoodPhotos
             title={t("home.childhoodPhotos.title")}
             text={t("home.childhoodPhotos.text")}
@@ -367,6 +338,45 @@ export default async function HomePage() {
                     {t("home.church.mapLink")}
                   </a>
                 </ScrollAnimationWrapper>
+              </div>
+            </ScrollAnimationWrapper>
+
+            {/* Marriage Registration Section */}
+            <ScrollAnimationWrapper
+              delay={0.1}
+              type="reveal"
+              direction="up"
+              threshold={0.3}
+            >
+              <OrnamentalDivider
+                className="mb-6"
+                animation="shimmer"
+                variant="leaves"
+              />
+
+              <AnimatedHeading
+                text={t("home.registrationCeremony.title")}
+                level={2}
+                className="text-3xl md:text-4xl text-gold-500 text-center mb-4"
+                textType="letters"
+                decorative={false}
+              />
+
+              <div className="text-center space-y-3 mt-6">
+                <AnimatedText
+                  text={t("home.registrationCeremony.time")}
+                  tag="p"
+                  className="text-xl font-cormorant text-forest"
+                  delay={0.2}
+                  type="block"
+                />
+                <AnimatedText
+                  text={t("home.registrationCeremony.description")}
+                  tag="p"
+                  className="text-md text-forest font-medium"
+                  delay={0.3}
+                  type="block"
+                />
               </div>
             </ScrollAnimationWrapper>
 
