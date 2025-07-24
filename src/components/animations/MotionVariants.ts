@@ -1,16 +1,27 @@
 import { Variants } from "framer-motion";
 
 // Define animation types
-export type AnimationType = "fadeIn" | "scaleUp" | "custom" | "slideIn" | "zoomIn" | "rotateIn" | "reveal" | "bounce";
+export type AnimationType =
+  | "fadeIn"
+  | "scaleUp"
+  | "custom"
+  | "slideIn"
+  | "zoomIn"
+  | "rotateIn"
+  | "reveal"
+  | "bounce";
 export type AnimationDirection = "up" | "down" | "left" | "right" | "none";
 export type AnimationTrigger = "scroll" | "hover" | "load" | "click";
 
 // Enhanced fade-in animation variants with better spring physics
-export const fadeIn = (direction: AnimationDirection = "up", delay: number = 0): Variants => ({
+export const fadeIn = (
+  direction: AnimationDirection = "up",
+  delay: number = 0
+): Variants => ({
   hidden: {
     opacity: 0,
     y: direction === "up" ? 60 : direction === "down" ? -60 : 0,
-    x: direction === "left" ? 60 : direction === "right" ? -60 : 0,
+    x: direction === "left" ? 60 : direction === "right" ? -60 : 0
   },
   visible: {
     opacity: 1,
@@ -22,9 +33,9 @@ export const fadeIn = (direction: AnimationDirection = "up", delay: number = 0):
       stiffness: 120,
       delay,
       duration: 0.8,
-      ease: [0.25, 0.1, 0.25, 1.0], // Enhanced cubic bezier for smoother motion
-    },
-  },
+      ease: [0.25, 0.1, 0.25, 1.0] // Enhanced cubic bezier for smoother motion
+    }
+  }
 });
 
 // Stagger children animations
@@ -33,9 +44,9 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-    },
-  },
+      staggerChildren: 0.15
+    }
+  }
 };
 
 // Parallax scroll variants
@@ -45,7 +56,7 @@ export const parallax = (speed: number = 0.1): Variants => ({
     y: speed * 100,
     transition: {
       ease: "linear",
-      type: "tween",
+      type: "tween"
     }
   }
 });
@@ -61,17 +72,20 @@ export const scaleUp: Variants = {
       damping: 22,
       stiffness: 180,
       mass: 1.2,
-      delay: 0.1,
-    },
-  },
+      delay: 0.1
+    }
+  }
 };
 
 // Slide in animation with configurable direction
-export const slideIn = (direction: AnimationDirection = "up", delay: number = 0): Variants => ({
+export const slideIn = (
+  direction: AnimationDirection = "up",
+  delay: number = 0
+): Variants => ({
   hidden: {
     opacity: 0,
     y: direction === "up" ? 100 : direction === "down" ? -100 : 0,
-    x: direction === "left" ? 100 : direction === "right" ? -100 : 0,
+    x: direction === "left" ? 100 : direction === "right" ? -100 : 0
   },
   visible: {
     opacity: 1,
@@ -83,17 +97,20 @@ export const slideIn = (direction: AnimationDirection = "up", delay: number = 0)
       stiffness: 150,
       mass: 1,
       delay,
-      duration: 1.0,
-    },
-  },
+      duration: 1.0
+    }
+  }
 });
 
 // Zoom in animation with configurable origin
-export const zoomIn = (delay: number = 0, origin: string = "center"): Variants => ({
-  hidden: { 
-    opacity: 0, 
+export const zoomIn = (
+  delay: number = 0,
+  origin: string = "center"
+): Variants => ({
+  hidden: {
+    opacity: 0,
     scale: 1.2,
-    transformOrigin: origin,
+    transformOrigin: origin
   },
   visible: {
     opacity: 1,
@@ -104,17 +121,20 @@ export const zoomIn = (delay: number = 0, origin: string = "center"): Variants =
       damping: 25,
       stiffness: 100,
       delay,
-      duration: 0.9,
-    },
-  },
+      duration: 0.9
+    }
+  }
 });
 
 // Rotate in animation
-export const rotateIn = (delay: number = 0, degrees: number = 10): Variants => ({
-  hidden: { 
-    opacity: 0, 
+export const rotateIn = (
+  delay: number = 0,
+  degrees: number = 10
+): Variants => ({
+  hidden: {
+    opacity: 0,
     rotate: degrees,
-    scale: 0.95,
+    scale: 0.95
   },
   visible: {
     opacity: 1,
@@ -125,9 +145,9 @@ export const rotateIn = (delay: number = 0, degrees: number = 10): Variants => (
       damping: 20,
       stiffness: 80,
       delay,
-      duration: 0.8,
-    },
-  },
+      duration: 0.8
+    }
+  }
 });
 
 // Hover animations
@@ -139,17 +159,17 @@ export const hoverScale = {
 // Page transition variants
 export const pageTransition: Variants = {
   initial: { opacity: 0 },
-  enter: { 
+  enter: {
     opacity: 1,
-    transition: { 
+    transition: {
       duration: 0.5,
       when: "beforeChildren",
       staggerChildren: 0.1
     }
   },
-  exit: { 
+  exit: {
     opacity: 0,
-    transition: { 
+    transition: {
       duration: 0.3,
       when: "afterChildren",
       staggerChildren: 0.05,
@@ -161,7 +181,7 @@ export const pageTransition: Variants = {
 // Enhanced button hover effects
 export const buttonHover = {
   scale: 1.04,
-  boxShadow: "0px 12px 24px rgba(156, 128, 74, 0.25)",
+  boxShadow: "0px 12px 24px rgba(156, 128, 74, 0.3)",
   transition: { type: "spring", stiffness: 400, damping: 8 }
 };
 
@@ -244,16 +264,16 @@ export const imageReveal: Variants = {
     scale: 1,
     transition: {
       duration: 1.4,
-      ease: [0.25, 0.1, 0.25, 1.0], // Enhanced cubic bezier for smoother motion
+      ease: [0.25, 0.1, 0.25, 1.0] // Enhanced cubic bezier for smoother motion
     }
   }
 };
 
 // Text reveal animation for headings
 export const textReveal = (delay: number = 0): Variants => ({
-  hidden: { 
+  hidden: {
     opacity: 0,
-    y: 20,
+    y: 20
   },
   visible: {
     opacity: 1,
@@ -261,7 +281,7 @@ export const textReveal = (delay: number = 0): Variants => ({
     transition: {
       duration: 0.7,
       delay,
-      ease: [0.22, 1, 0.36, 1], // Custom easing for text
+      ease: [0.22, 1, 0.36, 1] // Custom easing for text
     }
   }
 });
@@ -273,7 +293,7 @@ export const letterAnimation = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.5
     }
   }
 };

@@ -175,7 +175,7 @@ export default async function HomePage() {
                       text={t("home.celebrate")}
                       level={1}
                       className="text-4xl lg:text-6xl font-dancing-script text-forest leading-tight"
-                      textType="letters"
+                      textType="words"
                       decorative={false}
                     />
 
@@ -212,7 +212,7 @@ export default async function HomePage() {
                       href="/attend"
                       variant="primary"
                       size="lg"
-                      className="px-12 py-4 bg-forest hover:bg-forest-light text-white font-medium tracking-wider transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border-0 rounded-none relative overflow-hidden group"
+                      className="px-12 py-4 font-medium tracking-wider transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border-0 rounded-none relative overflow-hidden group"
                     >
                       <span className="relative z-10">
                         {t("home.rsvpButton")}
