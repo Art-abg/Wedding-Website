@@ -11,6 +11,7 @@ import {
   AnimatedBackgroundPattern
 } from "@/components/ui/EnhancedDecorativeElements";
 import ChildhoodPhotos from "@/components/ui/ChildhoodPhotos";
+import CountdownTimer from '@/components/Countdown';
 
 export default async function HomePage() {
   const t = await getI18n();
@@ -90,22 +91,6 @@ export default async function HomePage() {
           </div>
 
           <GoldenAccent animation="shimmer" delay={0.6} width="w-48" />
-
-          <AnimatedText
-            text={t("home.tagline")}
-            tag="p"
-            className="text-xl md:text-2xl text-forest-light mb-6 font-cormorant italic"
-            delay={0.7}
-            type="block"
-          />
-
-          <AnimatedText
-            text={weddingDate}
-            tag="p"
-            className="text-lg md:text-xl text-rose-dusty font-light tracking-widest uppercase mt-6"
-            delay={0.9}
-            type="letters"
-          />
         </ScrollAnimationWrapper>
 
         {/* Main Content Card with enhanced styling */}
@@ -228,6 +213,13 @@ export default async function HomePage() {
             <div className="h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent"></div>
           </div>
 
+          {/* Countdown Section */}
+          <section className="py-16 text-center">
+            <ScrollAnimationWrapper delay={0.2} type="reveal" direction="up">
+              <CountdownTimer />
+            </ScrollAnimationWrapper>
+          </section>
+
           <ChildhoodPhotos
             title={t("home.childhoodPhotos.title")}
             text={t("home.childhoodPhotos.text")}
@@ -242,39 +234,8 @@ export default async function HomePage() {
               direction="up"
               threshold={0.3}
             >
-              <OrnamentalDivider
-                className="mb-6"
-                animation="shimmer"
-                variant="diamond"
-              />
-
-              <AnimatedHeading
-                text={t("home.dateLabel")}
-                level={2}
-                className="text-3xl md:text-4xl text-gold-500 text-center mb-4"
-                textType="letters"
-                decorative={false}
-              />
-
-              <div className="text-center space-y-1 text-forest">
-                <AnimatedText
-                  text={t("home.weddingDate", {
-                    date: weddingDate,
-                    time: weddingTime
-                  })}
-                  tag="p"
-                  className="text-xl font-cormorant"
-                  delay={0.2}
-                  type="block"
-                />
-                <AnimatedText
-                  text={t("home.addToCalendar")}
-                  tag="p"
-                  className="text-lg font-light"
-                  delay={0.3}
-                  type="block"
-                />
-              </div>
+              {/* Add your content here or remove this wrapper if not needed */}
+              <></>
             </ScrollAnimationWrapper>
 
             {/* Church Ceremony Section with Image */}
@@ -319,12 +280,9 @@ export default async function HomePage() {
                   type="block"
                 />
                 <AnimatedText
-                  text={t("home.weddingDate", {
-                    date: weddingDate,
-                    time: churchTime
-                  })}
+                  text={`${churchTime}`}
                   tag="p"
-                  className="text-md text-forest font-medium"
+                  className="text-xl text-forest font-large"
                   delay={0.3}
                   type="block"
                 />
@@ -372,6 +330,18 @@ export default async function HomePage() {
                 textType="letters"
                 decorative={false}
               />
+
+              {/* Wedding Arch icon depiction */}
+              <div className="my-6 flex justify-center">
+                <Image
+                  src="/wedding-arch.png"
+                  alt={t("home.registrationCeremony.title")}
+                  width={120}
+                  height={120}
+                  className="h-auto opacity-90"
+                  priority
+                />
+              </div>
 
               <div className="text-center space-y-3 mt-6">
                 <AnimatedText
@@ -439,9 +409,9 @@ export default async function HomePage() {
                   type="block"
                 />
                 <AnimatedText
-                  text={`${weddingDate} at ${weddingTime}`}
+                  text={`${weddingTime}`}
                   tag="p"
-                  className="text-md text-forest font-medium"
+                  className="text-xl text-forest font-medium"
                   delay={0.3}
                   type="block"
                 />
@@ -514,7 +484,7 @@ export default async function HomePage() {
                 />
 
                 <AnimatedText
-                  text={t("home.rsvpDeadline", { date: rsvpDeadline })}
+                  text={rsvpDeadline}
                   tag="p"
                   className="text-lg text-forest-light"
                   delay={0.2}

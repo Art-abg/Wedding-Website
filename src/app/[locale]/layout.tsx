@@ -10,7 +10,7 @@ export async function generateStaticParams() {
 
 export default function LocaleLayout({
   children,
-  params: {}, // We don't need to destructure locale since it's not used
+  params: {},
 }: {
   children: ReactNode;
   params: { locale: string };

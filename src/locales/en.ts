@@ -10,10 +10,10 @@ export default {
     coupleImageAlt: "A photo of Anna & Artur",
     dateLabel: "When",
     weddingDate: "{date} at {time}",
-    venueLabel: "Where",
+    venueLabel: "Where is the venue?",
     venueName: "Villa Hills, Yerevan",
     venueMapLink: "View on Google Maps",
-    venueAddress: "Villa Hills, Yerevan",
+    venueAddress: "Verin Ptghni Kotayk Province, Armenia",
     rsvpTitle: "Kindly Respond",
     rsvpDeadline: "Please RSVP by {date}",
     rsvpButton: "Confirm Attendance",
@@ -22,8 +22,7 @@ export default {
     footer: "Made with love for Anna & Artur",
     backToHome: "Back to Home Page", // New key
     dressCodeTitle: "Attire Inspiration",
-    dressCodeText:
-      "To enhance our Enchanted Garden Soirée, we invite you to embrace a palette of jewel tones, soft pastels, or earthy neutrals. Think emerald green, sapphire blue, amethyst purple, dusty rose, lavender, sage, or warm beige. Floral patterns are also warmly welcomed!",
+    dressCodeText: "You can wear whatever makes you feel fabuluous",
     heroTitleL1: "Anna & Artur's",
     heroTitleL2: "Wedding",
     weddingDateValue: "September 12, 2025",
@@ -39,13 +38,19 @@ export default {
     registrationCeremony: {
       title: "Marriage Registration",
       time: "5:00 PM",
-      description:
-        "The official signing will take place at the restaurant, accompanied by classical music and a welcome drink."
+      description: "The official signing will take place at the restaurant"
     },
     childhoodPhotos: {
       title: "Our Story Begins",
       text: "Two paths, once separate, now intertwine..."
     }
+  },
+  Countdown: {
+    days: "Days",
+    hours: "Hours",
+    minutes: "Minutes",
+    seconds: "Seconds",
+    completed: "The big day is here!"
   },
   rsvpPage: {
     // Renamed from rsvp_form and new keys added
