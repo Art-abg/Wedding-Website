@@ -339,6 +339,17 @@ export default async function HomePage() {
                   </a>
                 </ScrollAnimationWrapper>
               </div>
+
+              {/* Elegant divider before next section */}
+              <div className="mt-12 mb-8">
+                <div className="relative flex items-center">
+                  <div className="flex-grow border-t border-gold-300/50"></div>
+                  <div className="mx-4 text-gold-500 text-sm font-cormorant italic">
+                    And Then
+                  </div>
+                  <div className="flex-grow border-t border-gold-300/50"></div>
+                </div>
+              </div>
             </ScrollAnimationWrapper>
 
             {/* Marriage Registration Section */}
@@ -373,10 +384,21 @@ export default async function HomePage() {
                 <AnimatedText
                   text={t("home.registrationCeremony.description")}
                   tag="p"
-                  className="text-md text-forest font-medium"
+                  className="text-md text-forest font-medium max-w-2xl mx-auto"
                   delay={0.3}
                   type="block"
                 />
+              </div>
+
+              {/* Elegant divider before next section */}
+              <div className="mt-12 mb-8">
+                <div className="relative flex items-center">
+                  <div className="flex-grow border-t border-gold-300/50"></div>
+                  <div className="mx-4 text-gold-500 text-sm font-cormorant italic">
+                    And Then
+                  </div>
+                  <div className="flex-grow border-t border-gold-300/50"></div>
+                </div>
               </div>
             </ScrollAnimationWrapper>
 
