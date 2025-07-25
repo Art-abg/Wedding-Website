@@ -1,4 +1,4 @@
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 import { getI18n } from "@/locales/server";
 import PageTransition from "@/components/ui/PageTransition";
@@ -13,7 +13,7 @@ import {
   AnimatedBackgroundPattern
 } from "@/components/ui/EnhancedDecorativeElements";
 import ChildhoodPhotos from "@/components/ui/ChildhoodPhotos";
-import CountdownTimer from '@/components/Countdown';
+import CountdownTimer from "@/components/Countdown";
 
 export default async function HomePage() {
   const t = await getI18n();
@@ -266,8 +266,8 @@ export default async function HomePage() {
                 <Image
                   src="/church.png"
                   alt={t("home.church.name")}
-                  width={120}
-                  height={120}
+                  width={144}
+                  height={144}
                   className="h-auto opacity-90"
                   priority
                 />
@@ -305,8 +305,18 @@ export default async function HomePage() {
                 <div className="relative flex items-center">
                   <div className="flex-grow border-t border-gold-300/50"></div>
                   <div className="mx-4 text-gold-500 text-sm font-cormorant italic">
-                    <svg className="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l5 5m0 0l5-5m-5 5V6" />
+                    <svg
+                      className="w-6 h-6 text-gold-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M7 13l5 5m0 0l5-5m-5 5V6"
+                      />
                     </svg>
                   </div>
                   <div className="flex-grow border-t border-gold-300/50"></div>
@@ -340,8 +350,8 @@ export default async function HomePage() {
                 <Image
                   src="/wedding-arch.png"
                   alt={t("home.registrationCeremony.title")}
-                  width={120}
-                  height={120}
+                  width={144}
+                  height={144}
                   className="h-auto opacity-90"
                   priority
                 />
@@ -369,8 +379,18 @@ export default async function HomePage() {
                 <div className="relative flex items-center">
                   <div className="flex-grow border-t border-gold-300/50"></div>
                   <div className="mx-4 text-gold-500 text-sm font-cormorant italic">
-                    <svg className="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l5 5m0 0l5-5m-5 5V6" />
+                    <svg
+                      className="w-6 h-6 text-gold-500"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M7 13l5 5m0 0l5-5m-5 5V6"
+                      />
                     </svg>
                   </div>
                   <div className="flex-grow border-t border-gold-300/50"></div>
@@ -399,6 +419,18 @@ export default async function HomePage() {
                 decorative={false}
               />
 
+              {/* Restaurant icon depiction */}
+              <div className="my-6 flex justify-center">
+                <Image
+                  src="/restaurant-icon.PNG"
+                  alt={t("home.venueName")}
+                  width={173}
+                  height={173}
+                  className="h-auto opacity-90"
+                  priority
+                />
+              </div>
+
               <div className="text-center space-y-3">
                 <AnimatedText
                   text={t("home.venueName")}
@@ -421,9 +453,12 @@ export default async function HomePage() {
                   delay={0.3}
                   type="block"
                 />
+
+                {/* Restaurant icon depiction */}
+
                 <ScrollAnimationWrapper delay={0.4} type="reveal">
                   <a
-                    href="https://g.co/kgs/2AFVJhp"
+                    href="https://maps.app.goo.gl/3o8bLxcnhXEEff3e9?g_st=ipc"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block mt-2 text-rose-dusty hover:text-berry-600 underline transition-colors duration-300"
