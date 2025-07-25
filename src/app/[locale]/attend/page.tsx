@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
+
 import { useState, FormEvent } from "react";
 import { useScopedI18n, useCurrentLocale } from "@/locales/client";
 import AnimatedSection from "@/components/AnimatedSection";

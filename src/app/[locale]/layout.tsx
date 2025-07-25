@@ -1,20 +1,19 @@
 import { ReactNode } from 'react';
-import { locales } from '@/locales/config';
 import { SpeedInsights } from "@vercel/speed-insights/next";
-
+import { setRequestLocale } from 'next-intl/server';
 import MainLayout from '@/components/layout/MainLayout';
 
-export async function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
+// Force dynamic rendering to bypass static export errors
+export const dynamic = 'force-dynamic';
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
-  params: {},
+  params: { locale },
 }: {
   children: ReactNode;
   params: { locale: string };
 }) {
+  setRequestLocale(locale);
   return (
     <MainLayout>
       <SpeedInsights />

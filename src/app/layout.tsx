@@ -5,6 +5,9 @@ import I18nProvider from "@/components/providers/I18nProvider";
 import GlobalAudioPlayer from '@/components/ui/GlobalAudioPlayer';
 import { getCurrentLocale } from "@/locales/server";
 
+// Force dynamic rendering to bypass static export errors
+export const dynamic = 'force-dynamic';
+
 const geist = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -48,7 +51,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = await getCurrentLocale();
+  let locale = await getCurrentLocale();
+  if (!locale) locale = 'en';
 
   return (
     <html lang={locale} className="scroll-smooth">

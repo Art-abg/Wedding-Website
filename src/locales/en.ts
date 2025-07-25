@@ -1,4 +1,8 @@
 export default {
+  NotFound: {
+    title: 'Page Not Found',
+    description: 'Oops! The page you are looking for does not exist.'
+  },
   nav: {
     home: "Home",
     attend: "Attend",

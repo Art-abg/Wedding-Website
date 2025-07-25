@@ -1,4 +1,8 @@
 export default {
+  NotFound: {
+    title: 'Էջը չի գտնվել',
+    description: 'Ցավոք, ձեր փնտրած էջը գոյություն չունի։'
+  },
   nav: {
     home: "Գլխավոր",
     attend: "Ներկա գտնվել",

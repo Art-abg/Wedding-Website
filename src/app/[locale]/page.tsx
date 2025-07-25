@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { getI18n } from "@/locales/server";
 import PageTransition from "@/components/ui/PageTransition";
 import Button from "@/components/ui/Button";
