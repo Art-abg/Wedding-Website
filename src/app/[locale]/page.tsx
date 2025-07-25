@@ -75,7 +75,7 @@ export default async function HomePage() {
       <div className="min-h-screen bg-gradient-to-br from-cream-100 to-blush-300/20 text-green-900 flex flex-col items-center py-8 md:py-16 px-4 md:px-6 lg:px-8">
         {/* Hero Section with enhanced animations */}
         <ScrollAnimationWrapper
-          className="text-center mb-12 md:mb-16 lg:mb-20 max-w-5xl mx-auto"
+          className="text-center mb-6 md:mb-8 lg:mb-10 max-w-5xl mx-auto"
           delay={0.2}
           type="reveal"
         >
@@ -257,7 +257,7 @@ export default async function HomePage() {
                 text={t("home.church.title")}
                 level={2}
                 className="text-3xl md:text-4xl text-gold-500 text-center mb-4"
-                textType="letters"
+                textType="words"
                 decorative={false}
               />
 
@@ -305,7 +305,9 @@ export default async function HomePage() {
                 <div className="relative flex items-center">
                   <div className="flex-grow border-t border-gold-300/50"></div>
                   <div className="mx-4 text-gold-500 text-sm font-cormorant italic">
-                    And Then
+                    <svg className="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l5 5m0 0l5-5m-5 5V6" />
+                    </svg>
                   </div>
                   <div className="flex-grow border-t border-gold-300/50"></div>
                 </div>
@@ -329,7 +331,7 @@ export default async function HomePage() {
                 text={t("home.registrationCeremony.title")}
                 level={2}
                 className="text-3xl md:text-4xl text-gold-500 text-center mb-4"
-                textType="letters"
+                textType="words"
                 decorative={false}
               />
 
@@ -367,7 +369,9 @@ export default async function HomePage() {
                 <div className="relative flex items-center">
                   <div className="flex-grow border-t border-gold-300/50"></div>
                   <div className="mx-4 text-gold-500 text-sm font-cormorant italic">
-                    And Then
+                    <svg className="w-6 h-6 text-gold-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l5 5m0 0l5-5m-5 5V6" />
+                    </svg>
                   </div>
                   <div className="flex-grow border-t border-gold-300/50"></div>
                 </div>
@@ -391,7 +395,7 @@ export default async function HomePage() {
                 text={t("home.venueLabel")}
                 level={2}
                 className="text-3xl md:text-4xl text-gold-500 text-center mb-4"
-                textType="letters"
+                textType="words"
                 decorative={false}
               />
 
@@ -447,7 +451,7 @@ export default async function HomePage() {
                 text={t("home.dressCodeTitle")}
                 level={2}
                 className="text-3xl md:text-4xl text-gold-500 text-center mb-4"
-                textType="letters"
+                textType="words"
                 decorative={false}
               />
 
@@ -481,7 +485,7 @@ export default async function HomePage() {
                   text={t("home.rsvpTitle")}
                   level={2}
                   className="text-3xl md:text-4xl text-gold-500"
-                  textType="letters"
+                  textType="words"
                   decorative={false}
                 />
 
