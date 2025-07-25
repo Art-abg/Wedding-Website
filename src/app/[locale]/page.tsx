@@ -72,10 +72,10 @@ export default async function HomePage() {
         density="medium"
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-cream-100 to-blush-300/20 text-green-900 flex flex-col items-center py-16 px-4">
+      <div className="min-h-screen bg-gradient-to-br from-cream-100 to-blush-300/20 text-green-900 flex flex-col items-center py-8 md:py-16 px-4 md:px-6 lg:px-8">
         {/* Hero Section with enhanced animations */}
         <ScrollAnimationWrapper
-          className="text-center mb-16 max-w-5xl mx-auto"
+          className="text-center mb-12 md:mb-16 lg:mb-20 max-w-5xl mx-auto"
           delay={0.2}
           type="reveal"
         >
@@ -96,7 +96,7 @@ export default async function HomePage() {
         </ScrollAnimationWrapper>
 
         {/* Main Content Card with enhanced styling */}
-        <main className="bg-sage-light/60 backdrop-blur-md shadow-2xl rounded-2xl max-w-4xl w-full mx-auto mb-16 overflow-hidden relative">
+        <main className="bg-sage-light/60 backdrop-blur-md shadow-2xl rounded-2xl max-w-4xl w-full mx-auto mb-12 md:mb-16 lg:mb-20 overflow-hidden relative">
           {/* Subtle decorative elements instead of corner accents */}
           <GoldenAccent
             animation="shimmer"
@@ -216,7 +216,7 @@ export default async function HomePage() {
           </div>
 
           {/* Countdown Section */}
-          <section className="py-16 text-center">
+          <section className="py-12 md:py-16 lg:py-20 text-center px-4 md:px-8">
             <ScrollAnimationWrapper delay={0.2} type="reveal" direction="up">
               <CountdownTimer />
             </ScrollAnimationWrapper>
@@ -228,7 +228,7 @@ export default async function HomePage() {
           />
 
           {/* Content Sections with scroll animations */}
-          <div className="px-8 md:px-16 py-10 space-y-12">
+          <div className="px-6 md:px-12 lg:px-16 py-8 md:py-12 lg:py-16 space-y-12 md:space-y-16 lg:space-y-20">
             {/* Date & Time Section */}
             <ScrollAnimationWrapper
               delay={0.1}
@@ -499,10 +499,10 @@ export default async function HomePage() {
                   className="pt-4"
                 >
                   <Button
-                    href="/rsvp"
+                    href="/attend"
                     variant="primary"
                     size="lg"
-                    className="mt-2 transform transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                    className="mt-4"
                   >
                     {t("home.rsvpButton")}
                   </Button>
