@@ -10,7 +10,7 @@ const nextConfig = {
   // Disable static optimization completely
   experimental: {
     // Force all pages to be dynamic
-    isrMemoryCacheSize: 0,
+
   },
   
   // Disable static generation

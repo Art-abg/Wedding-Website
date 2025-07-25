@@ -113,6 +113,9 @@ export default function RsvpPage() {
 
     console.log("Submitting RSVP data to Supabase:", formData);
     try {
+      if (!supabase) {
+        throw new Error("Supabase client is not initialized.");
+      }
       const submissionData = {
         name: formData.name,
         email: formData.email || null,
