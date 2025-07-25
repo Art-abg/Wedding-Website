@@ -23,7 +23,7 @@ export default {
     rsvpButton: "Confirm Attendance",
     celebrate: "Celebrate  With  Us", // New key
     addToCalendar: "Add to Calendar", // New key
-    footer: "Made with love for Artur & Anna",
+    footer: "Made with love by Artur & Anna",
     backToHome: "Back to Home Page", // New key
     dressCodeTitle: "Attire Inspiration",
     dressCodeText: "You can wear whatever makes you feel fabuluous",

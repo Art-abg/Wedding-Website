@@ -23,7 +23,7 @@ export default {
     rsvpButton: "Հաստատել ներկայությունը",
     celebrate: "Նշե՛ք  մեզ  հետ", // New key
     addToCalendar: "Ավելացնել օրացույցում", // New key
-    footer: "Ստեղծված է սիրով Արթուրի և Աննայի համար",
+    footer: "Ստեղծված է սիրով Արթուրի և Աննայի կողմից",
     backToHome: "Վերադառնալ գլխավոր էջ",
     dressCodeTitle: "Հագուստի ոգեշնչում",
     dressCodeText: "Հագեք այն, ինչով դուք ձեզ հիասքանչ եք զգում։",

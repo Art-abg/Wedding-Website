@@ -42,7 +42,20 @@ export const metadata: Metadata = {
   title: "Anna & Artur's Wedding",
   description: "Join us for the celebration of Anna & Artur's wedding.",
   icons: {
-    icon: '/favicon.ico',
+    icon: '/restaurant-icon.PNG',
+    apple: '/restaurant-icon.PNG',
+  },
+  openGraph: {
+    title: "Anna & Artur's Wedding",
+    description: "Join us for the celebration of Anna & Artur's wedding.",
+    images: ['/restaurant-icon.PNG'],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Anna & Artur's Wedding",
+    description: "Join us for the celebration of Anna & Artur's wedding.",
+    images: ['/restaurant-icon.PNG'],
   },
 };
 
