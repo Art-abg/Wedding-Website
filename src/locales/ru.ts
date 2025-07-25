@@ -11,7 +11,7 @@ export default {
   home: {
     title: "Свадьба {brideName} и {groomName}",
     tagline: "Присоединяйтесь к нам на праздник любви!",
-    coupleImageAlt: "Фото Анны и Артура",
+    coupleImageAlt: "Фото Артура и Анны",
     dateLabel: "Когда",
     weddingDate: "{date} в {time}",
     venueLabel: "Где проходит мероприятие?",
@@ -23,11 +23,11 @@ export default {
     rsvpButton: "Подтвердить присутствие",
     celebrate: "Празднуйте  с  нами", // New key
     addToCalendar: "Добавить в календарь", // New key
-    footer: "Сделано с любовью для Анны и Артура",
+    footer: "Сделано с любовью для Артура и Анны",
     backToHome: "Вернуться на главную",
     dressCodeTitle: "Вдохновение для нарядов",
     dressCodeText: "Надевайте то, в чём вы чувствуете себя превосходно.",
-    heroTitleL1: "Свадьба Анны и Артура",
+    heroTitleL1: "Свадьба Артура и Анны",
     heroTitleL2: " ",
     weddingDateValue: "12 сентября 2025",
     weddingTimeValue: "17:00",

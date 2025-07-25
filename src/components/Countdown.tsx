@@ -27,7 +27,7 @@ const CountdownTimer = () => {
         <div className="w-full max-w-4xl mx-auto px-4">
           {/* Mobile-first responsive grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 justify-items-center">
-            <div className="flex flex-col items-center p-3 md:p-6 bg-gradient-to-br from-cream-100/90 to-sage-light/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-forest w-full max-w-[120px] md:max-w-[140px] group hover:scale-105">
+            <div className="flex flex-col items-center p-3 md:p-6 bg-gradient-to-br from-cream-100/90 to-sage-light/50 backdrop-blur-sm rounded-2xl shadow-md md:shadow-lg hover:shadow-lg md:hover:shadow-xl transition-all duration-300 text-forest w-full max-w-[120px] md:max-w-[140px] group hover:scale-105">
               <span className="countdown font-mono text-3xl md:text-5xl lg:text-6xl font-bold text-gold-600 group-hover:text-gold-700 transition-colors duration-300">
                 <span style={{'--value':days} as React.CSSProperties}></span>
               </span>
@@ -36,7 +36,7 @@ const CountdownTimer = () => {
               </span>
             </div>
             
-            <div className="flex flex-col items-center p-3 md:p-6 bg-gradient-to-br from-cream-100/90 to-sage-light/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-forest w-full max-w-[120px] md:max-w-[140px] group hover:scale-105">
+            <div className="flex flex-col items-center p-3 md:p-6 bg-gradient-to-br from-cream-100/90 to-sage-light/50 backdrop-blur-sm rounded-2xl shadow-md md:shadow-lg hover:shadow-lg md:hover:shadow-xl transition-all duration-300 text-forest w-full max-w-[120px] md:max-w-[140px] group hover:scale-105">
               <span className="countdown font-mono text-3xl md:text-5xl lg:text-6xl font-bold text-gold-600 group-hover:text-gold-700 transition-colors duration-300">
                 <span style={{'--value':hours} as React.CSSProperties}></span>
               </span>
@@ -45,7 +45,7 @@ const CountdownTimer = () => {
               </span>
             </div>
             
-            <div className="flex flex-col items-center p-3 md:p-6 bg-gradient-to-br from-cream-100/90 to-sage-light/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-forest w-full max-w-[120px] md:max-w-[140px] group hover:scale-105">
+            <div className="flex flex-col items-center p-3 md:p-6 bg-gradient-to-br from-cream-100/90 to-sage-light/50 backdrop-blur-sm rounded-2xl shadow-md md:shadow-lg hover:shadow-lg md:hover:shadow-xl transition-all duration-300 text-forest w-full max-w-[120px] md:max-w-[140px] group hover:scale-105">
               <span className="countdown font-mono text-3xl md:text-5xl lg:text-6xl font-bold text-gold-600 group-hover:text-gold-700 transition-colors duration-300">
                 <span style={{'--value':minutes} as React.CSSProperties}></span>
               </span>
@@ -54,7 +54,7 @@ const CountdownTimer = () => {
               </span>
             </div>
             
-            <div className="flex flex-col items-center p-3 md:p-6 bg-gradient-to-br from-cream-100/90 to-sage-light/50 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-forest w-full max-w-[120px] md:max-w-[140px] group hover:scale-105">
+            <div className="flex flex-col items-center p-3 md:p-6 bg-gradient-to-br from-cream-100/90 to-sage-light/50 backdrop-blur-sm rounded-2xl shadow-md md:shadow-lg hover:shadow-lg md:hover:shadow-xl transition-all duration-300 text-forest w-full max-w-[120px] md:max-w-[140px] group hover:scale-105">
               <span className="countdown font-mono text-3xl md:text-5xl lg:text-6xl font-bold text-gold-600 group-hover:text-gold-700 transition-colors duration-300">
                 <span style={{'--value':seconds} as React.CSSProperties}></span>
               </span>

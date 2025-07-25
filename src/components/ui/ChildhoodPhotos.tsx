@@ -29,20 +29,26 @@ const ChildhoodPhotos: React.FC<ChildhoodPhotosProps> = ({ title, text }) => {
   const photoVariants = (isLeft: boolean) => ({
     hidden: {
       x: isLeft ? "-100vw" : "100vw",
+      y: 50,
       opacity: 0,
       rotate: isLeft ? -15 : 15
     },
     visible: {
       x:
-        typeof window !== "undefined" && window.innerWidth < 768
+        typeof window !== "undefined" && window.innerWidth < 480
           ? isLeft
-            ? "-31%"
-            : "31%"
+            ? "-37%"
+            : "37%"
+          : typeof window !== "undefined" && window.innerWidth < 768
+          ? isLeft
+            ? "-40%"
+            : "40%"
           : isLeft
-          ? "-40%"
-          : "40%",
+          ? "-50%"
+          : "50%",
+      y: isLeft ? 0 : 0,
       opacity: 1,
-      rotate: isLeft ? -15 : 15,
+      rotate: isLeft ? -8 : 8,
       transition: { type: "spring", stiffness: 30, damping: 10, duration: 2 }
     }
   });

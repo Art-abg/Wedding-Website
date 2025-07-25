@@ -11,7 +11,7 @@ export default {
   home: {
     title: "{brideName} և {groomName} Հարսանիքը",
     tagline: "Միացե՛ք մեր սիրո տոնակատարությանը",
-    coupleImageAlt: "Աննայի և Արթուրի լուսանկարը",
+    coupleImageAlt: "Արթուրի և Աննայի լուսանկարը",
     dateLabel: "Ե՞րբ",
     weddingDate: "{date} ժամը {time}",
     venueLabel: "Որտե՞ղ է տեղի ունենալու հարսանիքը",
@@ -23,11 +23,11 @@ export default {
     rsvpButton: "Հաստատել ներկայությունը",
     celebrate: "Նշե՛ք  մեզ  հետ", // New key
     addToCalendar: "Ավելացնել օրացույցում", // New key
-    footer: "Ստեղծված է սիրով Աննայի և Արթուրի համար",
+    footer: "Ստեղծված է սիրով Արթուրի և Աննայի համար",
     backToHome: "Վերադառնալ գլխավոր էջ",
     dressCodeTitle: "Հագուստի ոգեշնչում",
     dressCodeText: "Հագեք այն, ինչով դուք ձեզ հիասքանչ եք զգում։",
-    heroTitleL1: "Աննայի և Արթուրի",
+    heroTitleL1: "Արթուրի և Աննայի",
     heroTitleL2: "Հարսանիքը",
     weddingDateValue: "Սեպտեմբերի 12, 2025",
     weddingTimeValue: "17:00",

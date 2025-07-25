@@ -32,18 +32,45 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   // Base styling for all buttons with enhanced visual appeal
   const baseClasses =
-    "inline-flex items-center justify-center font-medium rounded-2xl border transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-offset-2 shadow-lg hover:shadow-xl active:shadow-md transform hover:-translate-y-0.5 active:translate-y-0 relative overflow-hidden group";
+    "inline-flex items-center justify-center font-bold rounded-2xl border-0 transition-all duration-300 focus:outline-none relative overflow-hidden";
 
-  // Variant-specific classes with enhanced styling
+  // Get explicit styles for each variant
+  const getVariantStyle = (variant: string) => {
+    const styles = {
+      primary: {
+        background: 'linear-gradient(135deg, #2d5016 0%, #1a2e0a 100%)',
+        color: '#faf7f0',
+        boxShadow: '0 10px 25px rgba(45, 80, 22, 0.4)',
+        border: 'none'
+      },
+      secondary: {
+        background: 'linear-gradient(135deg, #d4af37 0%, #b8941f 100%)',
+        color: '#faf7f0',
+        boxShadow: '0 10px 25px rgba(212, 175, 55, 0.4)',
+        border: 'none'
+      },
+      outline: {
+        background: 'linear-gradient(135deg, rgba(45, 80, 22, 0.9) 0%, rgba(26, 46, 10, 0.9) 100%)',
+        color: '#faf7f0',
+        boxShadow: '0 10px 25px rgba(45, 80, 22, 0.4)',
+        border: 'none'
+      },
+      subtle: {
+        background: 'linear-gradient(135deg, #8fbc8f 0%, #556b2f 100%)',
+        color: '#faf7f0',
+        boxShadow: '0 10px 25px rgba(143, 188, 143, 0.4)',
+        border: 'none'
+      }
+    };
+    return styles[variant as keyof typeof styles] || styles.primary;
+  };
+
+  // Variant-specific classes (keeping for additional styling)
   const variantClasses = {
-    primary:
-      "bg-gradient-to-r from-forest to-forest-dark hover:from-forest-dark hover:to-forest text-cream-100 focus:ring-forest/50 border-forest/30 hover:border-forest/50 shadow-forest/20 hover:shadow-forest/30",
-    secondary:
-      "bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-cream-100 focus:ring-gold-500/50 border-gold-500/30 hover:border-gold-600/50 shadow-gold-500/20 hover:shadow-gold-600/30",
-    outline:
-      "border-2 border-forest text-forest hover:bg-forest hover:text-cream-100 hover:border-forest-dark focus:ring-forest/50 bg-transparent hover:shadow-forest/20",
-    subtle:
-      "text-forest hover:text-forest-light hover:bg-gradient-to-r hover:from-sage-light/60 hover:to-cream-100/60 focus:ring-forest-light/50 border border-transparent hover:border-forest/30 backdrop-blur-sm"
+    primary: "hover:shadow-2xl hover:-translate-y-1 hover:scale-105 active:scale-100",
+    secondary: "hover:shadow-2xl hover:-translate-y-1 hover:scale-105 active:scale-100",
+    outline: "hover:shadow-2xl hover:-translate-y-1 hover:scale-105 active:scale-100",
+    subtle: "hover:shadow-2xl hover:-translate-y-1 hover:scale-105 active:scale-100"
   };
 
   // Size-specific classes with enhanced proportions
@@ -56,6 +83,9 @@ const Button: React.FC<ButtonProps> = ({
   // Disabled state classes
   const disabledClasses = disabled ? "opacity-60 cursor-not-allowed" : "";
 
+  // Get inline styles for the variant
+  const variantStyle = getVariantStyle(variant);
+  
   // Combine all classes
   const allClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${disabledClasses} ${className}`;
 
@@ -66,6 +96,7 @@ const Button: React.FC<ButtonProps> = ({
         <motion.a
           href={href}
           className={allClasses}
+          style={variantStyle}
           target="_blank"
           rel="noopener noreferrer"
           whileHover={disabled ? {} : buttonHover}
@@ -83,6 +114,7 @@ const Button: React.FC<ButtonProps> = ({
       <Link href={href} passHref>
         <motion.span
           className={allClasses}
+          style={variantStyle}
           whileHover={disabled ? {} : buttonHover}
           whileTap={disabled ? {} : { scale: 0.98 }}
         >
@@ -102,6 +134,7 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       disabled={disabled || isLoading}
       className={allClasses}
+      style={variantStyle}
       whileHover={disabled ? {} : buttonHover}
       whileTap={disabled ? {} : { scale: 0.98 }}
     >

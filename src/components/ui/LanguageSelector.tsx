@@ -37,11 +37,45 @@ export default function LanguageSelector() {
     };
   }, []);
 
+  // Define explicit styles for the language selector
+  const buttonStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    padding: '8px 16px',
+    borderRadius: '24px',
+    background: 'rgba(250, 247, 240, 0.95)',
+    backdropFilter: 'blur(10px)',
+    border: '2px solid rgba(212, 175, 55, 0.8)',
+    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
+    color: '#2d5016',
+    transition: 'all 0.3s ease',
+    cursor: 'pointer',
+    fontSize: '14px',
+    fontWeight: '600'
+  };
+
+  const dropdownStyle = {
+    position: 'absolute' as const,
+    right: '0',
+    top: '100%',
+    marginTop: '8px',
+    width: '160px',
+    borderRadius: '12px',
+    background: 'rgba(250, 247, 240, 0.98)',
+    backdropFilter: 'blur(15px)',
+    border: '2px solid rgba(212, 175, 55, 0.8)',
+    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
+    overflow: 'hidden',
+    zIndex: 50
+  };
+
   return (
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-cream-200/80 hover:bg-cream-200 text-forest transition-colors duration-300 border border-gold-300/30"
+        style={buttonStyle}
+        className="hover:scale-105 active:scale-95 transition-transform duration-200"
         aria-label="Select language"
       >
         <span className="text-lg">{languageFlags[currentLocale]}</span>
@@ -52,7 +86,7 @@ export default function LanguageSelector() {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-40 rounded-md shadow-lg bg-cream-100 border border-gold-300/30 overflow-hidden z-50">
+        <div style={dropdownStyle}>
           <div className="py-1">
             {locales.map((locale) => (
               <button
@@ -65,11 +99,24 @@ export default function LanguageSelector() {
                     console.error('Error changing locale:', error);
                   }
                 }}
-                className={`flex items-center gap-2 w-full text-left px-4 py-2 text-sm ${
-                  currentLocale === locale
-                    ? 'bg-gold-200/50 text-forest font-medium'
-                    : 'text-forest-light hover:bg-cream-200'
-                }`}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  width: '100%',
+                  textAlign: 'left' as const,
+                  padding: '12px 16px',
+                  fontSize: '14px',
+                  fontWeight: currentLocale === locale ? '600' : '500',
+                  background: currentLocale === locale 
+                    ? 'rgba(212, 175, 55, 0.2)' 
+                    : 'transparent',
+                  color: currentLocale === locale ? '#2d5016' : '#556b2f',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease'
+                }}
+                className="hover:bg-opacity-30 hover:bg-gold-300 transition-colors duration-200"
               >
                 <span className="text-lg">{languageFlags[locale]}</span>
                 <span>{languageNames[locale]}</span>

@@ -11,7 +11,7 @@ export default {
   home: {
     title: "{brideName} & {groomName}'s Wedding",
     tagline: "Join us for a celebration of love!",
-    coupleImageAlt: "A photo of Anna & Artur",
+    coupleImageAlt: "A photo of Artur & Anna",
     dateLabel: "When",
     weddingDate: "{date} at {time}",
     venueLabel: "Where is the venue?",
@@ -23,11 +23,11 @@ export default {
     rsvpButton: "Confirm Attendance",
     celebrate: "Celebrate  With  Us", // New key
     addToCalendar: "Add to Calendar", // New key
-    footer: "Made with love for Anna & Artur",
+    footer: "Made with love for Artur & Anna",
     backToHome: "Back to Home Page", // New key
     dressCodeTitle: "Attire Inspiration",
     dressCodeText: "You can wear whatever makes you feel fabuluous",
-    heroTitleL1: "Anna & Artur's",
+    heroTitleL1: "Artur & Anna's",
     heroTitleL2: "Wedding",
     weddingDateValue: "September 12, 2025",
     weddingTimeValue: "5:00 PM",
