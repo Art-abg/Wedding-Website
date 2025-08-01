@@ -179,14 +179,6 @@ export default async function HomePage() {
                       delay={0.5}
                       type="block"
                     />
-
-                    <AnimatedText
-                      text={weddingTime}
-                      tag="p"
-                      className="text-lg lg:text-xl text-forest-light font-light tracking-widest uppercase"
-                      delay={0.7}
-                      type="letters"
-                    />
                   </div>
 
                   {/* Modern CTA button */}
