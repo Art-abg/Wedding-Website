@@ -127,7 +127,7 @@ export default async function HomePage() {
                     alt={t("home.coupleImageAlt")}
                     fill
                     priority
-                    sizes="(max-width: 1024px) 100vw, 60vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 60vw"
                     className="object-cover object-center transition-transform duration-700 ease-out hover:scale-105"
                     style={{ transformOrigin: "center center" }}
                   />
@@ -262,6 +262,7 @@ export default async function HomePage() {
                   height={144}
                   className="h-auto opacity-90"
                   priority
+                  sizes="(max-width: 768px) 120px, 144px"
                 />
               </div>
 
@@ -346,6 +347,7 @@ export default async function HomePage() {
                   height={144}
                   className="h-auto opacity-90"
                   priority
+                  sizes="(max-width: 768px) 120px, 144px"
                 />
               </div>
 
@@ -420,6 +422,7 @@ export default async function HomePage() {
                   height={173}
                   className="h-auto opacity-90"
                   priority
+                  sizes="(max-width: 768px) 140px, 173px"
                 />
               </div>
 
